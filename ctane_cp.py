@@ -7,6 +7,8 @@ Please do not re-distribute without written permission from the author
 Any commerical uses strictly forbidden.
 Code is provided without any guarantees.
 ----------------------------------------------------------------------------------------------"""
+from pprint import pprint
+
 from pandas import *
 from collections import defaultdict
 import numpy as NP
@@ -30,7 +32,6 @@ def add_element_in_tuple(spxminusa, ca):
 
 
 def validcfd(xminusa, x, a, spxminusa, sp, ca, dictpartitions):
-    # global dictpartitions
     ept_tu = tuple()
     if xminusa is ept_tu or a is ept_tu:
         return False
@@ -63,6 +64,8 @@ def greaterthanorequalto(upxminusa, spxminusa):  # this is actually greaterthan 
 
 
 def compute_dependencies(level, listofcols, dictCplus, finallistofCFDs, dictpartitions):
+    print('what is dictplus?')
+    pprint(dictCplus)
     for (x, sp) in level:
         for a in x:
             tmp = list(x)
@@ -85,6 +88,8 @@ def compute_dependencies(level, listofcols, dictCplus, finallistofCFDs, dictpart
                                         dictCplus[(x, up)].remove((tuple(a), ca))
                                     listofcolscopy = listofcols[:]
                                     for j in x:  # this loop computes R\X
+                                        print(f'what is j?: {j}')
+                                        print(listofcolscopy)
                                         if j in listofcolscopy:
                                             listofcolscopy.remove(j)
                                     for b_att in listofcolscopy:  # this loop removes each b in R\X from C+(X,up)
@@ -135,8 +140,6 @@ def computeCplus(level, dictCplus):  # for each tuple (x,sp) in the list level, 
 
 
 def initial_Cplus(level, dictCplus):
-    # global listofcolumns
-    # global dictCplus
     dictCplus = computeCplus(level, dictCplus)
     for (a, ca) in level:
         stufftobedeleted = []
@@ -152,14 +155,16 @@ def populateL1(listofcols, k_suppthreshold, data2D, dictpartitions):
     l1 = []
     attributepartitions = computeAttributePartitions(listofcols, data2D)
     for a in listofcols:
+        # tu_a = tuple([a])
         tu_a = tuple(a)
+        print(tu_a)
         l1.append((tu_a, ('--',)))
         for eqclass in attributepartitions[tu_a]:
             if len(eqclass) >= k_suppthreshold:
                 l1.append((tu_a, (str(data2D.iloc[eqclass[0]][a]),)))
-    computeInitialPartitions(l1, attributepartitions, dictpartitions)
+    dictpartitions = computeInitialPartitions(l1, attributepartitions, dictpartitions)
     # populates the dictpartitions with the initial partitions (X,sp) where X is a single attribute
-    return l1
+    return l1, dictpartitions
 
 
 def computeInitialPartitions(level1, attributepartitions, dictpartitions):
@@ -167,19 +172,7 @@ def computeInitialPartitions(level1, attributepartitions, dictpartitions):
     for (a, sp) in level1:
         dictpartitions[(a, sp)] = []
         dictpartitions[(a, sp)] = attributepartitions[a]
-
-
-def old_computeInitialPartitions(level1, attributepartitions):
-    global data2D
-    global dictpartitions  # dictpartitions[(x,sp)] is of the form [[0,1,2]]. So simply a list of lists of indices
-    for (a, sp) in level1:
-        dictpartitions[(a, sp)] = []
-        if sp[0] == '--':
-            dictpartitions[(a, sp)] = attributepartitions[a]
-        else:
-            for eqclass in attributepartitions[a]:
-                if str(data2D.iloc[eqclass[0]][a]) == sp[0]:
-                    dictpartitions[(a, sp)].append(eqclass)
+    return dictpartitions
 
 
 def computeAttributePartitions(listofcols, data2D):  # compute partitions for every attribute
@@ -256,6 +249,7 @@ def partition_product(zup, xsp, ytp, tableT, dictpartitions):
     partitionXSP = dictpartitions[xsp]
     partitionYTP = dictpartitions[ytp]
     partitionZUP = []
+    print("x:%s partitionX:%s,y:%s partitionY:%s" % (xsp, partitionXSP, ytp, partitionYTP))
     for i in range(len(partitionXSP)):
         for t in partitionXSP[i]:
             tableT[t] = i
@@ -274,6 +268,8 @@ def partition_product(zup, xsp, ytp, tableT, dictpartitions):
             tableT[t] = 'NULL'
     dictpartitions[zup] = partitionZUP
     dictpartitions[zup] = partitionZUP
+    print(f'zup={zup},partitionX={partitionZUP}')
+    return dictpartitions
 
 
 def sortspbasedonx(x, sp):
@@ -291,8 +287,9 @@ def sortspbasedonx(x, sp):
 # if len(sys.argv) > 2:
 #     k = int(sys.argv[2])
 def main():
-    infile = 'data/testdataABCD.csv'
+    infile = 'data/testdata3.csv'
     data2D = read_csv(infile)
+    print(data2D)
     k = 2
 
     totaltuples = len(data2D.index)
@@ -303,11 +300,12 @@ def main():
 
     dictpartitions = {}  # maps 'stringslikethis' to a list of lists, each of which contains indices
     finallistofCFDs = []
-    L1 = populateL1(listofcolumns[:], k_suppthreshold, data2D,
+    L1, dictpartitions = populateL1(listofcolumns[:], k_suppthreshold, data2D,
                     dictpartitions)  # L1 is a list of tuples of the form [ ('A', ('val1') ), ('A', ('val2') ), ..., ('B', ('val3') ), ......]
     dictCplus = {(tuple(), ()): L1[:]}
     l = 1
     L = [L0, L1]
+    pprint(dictpartitions)  # 存放的是每个属性集上的剥离分区
 
     while not (L[l] == []):
         if l == 1:

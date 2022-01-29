@@ -46,6 +46,8 @@ def compute_dependencies(level, listofcols):
     # FUN1: 计算所有X属于Li的右方集Cplus
     # 通过上层结点{A}计算当前层的每个X的Cplus(X)
     # 或者通过computeCplus
+    print('============')
+    print(f'what is dict C plus: {dictCplus}')
     for x in level:
         thesets = []
         for a in x:
@@ -62,24 +64,35 @@ def compute_dependencies(level, listofcols):
 
     # Fun2: 找到最小函数依赖
     # 并对Cplus进行剪枝（最小性剪枝）： 1.删掉已经成立的。 2去掉必不可能的 留下的是"仍有希望的"
+    print(f'level is {level}')
     for x in level:
+        print(x)
         for a in x:
             if a in dictCplus[x]:
+                print(f'current a: {a} ')
                 # if x=='BCJ': print "dictCplus['BCJ'] = ", dictCplus[x]
+                print(f'current x: {x}')
+                print(f'delete element a: {x.replace(a, "")}')
+                print(x)
                 if validfd(x.replace(a, ''), a):  # line 5 即x\{A} -> A 函数依赖成立
                     finallistofFDs.append([x.replace(a, ''), a])  # line 6
                     print(f'compute_dependencies: level{level} adding key FD: {[x.replace(a, ""), a]}')
                     dictCplus[x].remove(a)  # line 7
+                    print(f'current dict C plus: {dictCplus}')
 
                     listofcols = listofcols[:]  # 为了下面的剪枝作准备
                     for j in x:  # this loop computes R\X
                         if j in listofcols:
                             listofcols.remove(j)
-
+                    print('bug might occur here...')
+                    print(listofcols)
                     for b in listofcols:  # this loop removes each b in R\X from C+(X)
+                        print(f'b is {b}')
+                        print(f'dict Cplus : {dictCplus}')
                         # 在C+(X) 删掉所有属于R\X 即不属于X的元素， 即留下的Cplus元素全部属于X
                         if b in dictCplus[x]:
                             dictCplus[x].remove(b)
+                        print(f'current dict Cplus: {dictCplus}')
 
 
 def computeCplus(x):
@@ -99,9 +112,13 @@ def computeCplus(x):
 
 
 def validfd(y, z):
-    if y == '' or z == '': return False
+    print(f'validefd : {y}; {z}')
+    if y == '' or z == '':
+        return False
     ey = computeE(y)
+    print(y+z)
     eyz = computeE(y + z)
+
     if ey == eyz:
         return True
     else:
@@ -239,7 +256,7 @@ def computeSingletonPartitions(listofcols):
 # 此时考虑的属性集只有A,B,C,D，在单个属性集上面生成剥离分区
 '''测试list_duplicates函数的返回值:返回的是每个属性列表中每个属性的剥离分区'''
 
-data2D = read_csv('data/testdataABCD.csv')
+data2D = read_csv('data/testdata3.csv')
 
 totaltuples = len(data2D.index)
 listofcolumns = list(data2D.columns.values)  # returns ['A', 'B', 'C', 'D', .....]

@@ -72,7 +72,7 @@ def compute_dependencies(level, listofcols, dictCplus, finallistofFDs, totaltupl
         for a in x:
             list_x.remove(a)
             if not list_x:
-                del_x = ()
+                del_x = ''
             else:
                 del_x = tuple(list_x)
             if del_x in dictCplus.keys():
@@ -91,25 +91,26 @@ def compute_dependencies(level, listofcols, dictCplus, finallistofFDs, totaltupl
     # Fun2: 找到最小函数依赖
     # 并对Cplus进行剪枝（最小性剪枝）： 1.删掉已经成立的。 2去掉必不可能的 留下的是"仍有希望的"
     for x in level:
-        list_x = list(x)
         for a in x:
-            list_x.remove(a)
-            if not list_x:
-                del_x = ()
-            else:
-                del_x = tuple(list_x)
-            if a in dictCplus[x]:
-                # if x=='BCJ': print "dictCplus['BCJ'] = ", dictCplus[x]
-                if validfd(del_x, a, totaltuples, dictpartitions):  # line 5 即x\{A} -> A 函数依赖成立
-                    finallistofFDs.append([del_x, a])  # line 6
-                    print(f'compute_dependencies: level{level} adding key FD: {[del_x, a]}')
-                    dictCplus[x].remove(a)  # line 7
+            list_x = list(x)
+            tu_a = tuple(a)
+            if tu_a in dictCplus[x]:
+                list_x.remove(a)
+                if not list_x:
+                    del_x = ()
+                else:
+                    del_x = tuple(list_x)
+                if validfd(del_x, tu_a, totaltuples, dictpartitions):  # line 5 即x\{A} -> A 函数依赖成立
+                    finallistofFDs.append([del_x, tu_a])  # line 6
+                    print(f'compute_dependencies: level{level} adding key FD: {[del_x, tu_a]}')
+                    dictCplus[x].remove(tu_a)  # line 7
+                    print(f'current dict C plus: {dictCplus}')
 
                     listofcols = listofcols[:]  # 为了下面的剪枝作准备
                     for j in x:  # this loop computes R\X
-                        if j in listofcols:
-                            listofcols.remove(j)
-
+                        tu_j = tuple(j)
+                        if tu_j in listofcols:
+                            listofcols.remove(tu_j)
                     for b in listofcols:  # this loop removes each b in R\X from C+(X)
                         # 在C+(X) 删掉所有属于R\X 即不属于X的元素， 即留下的Cplus元素全部属于X
                         if b in dictCplus[x]:
@@ -121,7 +122,8 @@ def computeCplus(x, listofcolumns, totaltuples, dictpartitions):
     # this computes the Cplus from the first definition in section 3.2.2 of TANE paper.
     # output should be a list of single attributes
     listofcols = listofcolumns[:]
-    if x == '': return listofcols  # because C+{phi} = R
+    if x == '':
+        return listofcols  # because C+{phi} = R
     cplus = []
     for a in listofcols:  # A属于R并满足如下条件
         del_a = listofcols
@@ -159,9 +161,10 @@ def computeE(x, totaltuples, dictpartitions):  # 属性集为x
     # 元组数
     # 关于每个属性集的剥离分区
     doublenorm = 0
-    for i in dictpartitions[x]:
+    sort_x = tuple(sorted(x))
+    for i in dictpartitions[sort_x]:
         doublenorm = doublenorm + len(i)
-    e = (doublenorm - len(dictpartitions[x])) / float(totaltuples)
+    e = (doublenorm - len(dictpartitions[sort_x])) / float(totaltuples)
     return e
 
 
@@ -284,17 +287,18 @@ def computeSingletonPartitions(listofcols, data2D, dictpartitions):
 
 
 def main():
-    data2D = read_csv('data/testdataABCD.csv')
+    data2D = read_csv('data/testdata3.csv')
 
     totaltuples = len(data2D.index)
     columns = list(x for x in data2D.columns.values)
-    listofcolumns = list(tuple(x) for x in data2D.columns.values)  # returns ['A', 'B', 'C', 'D', .....]
+    listofcolumns = list(tuple([x]) for x in columns)  # returns ['A', 'B', 'C', 'D', .....]
+    print(listofcolumns)
     dictpartitions = {}
     dictCplus = {tuple(): listofcolumns}
     print(data2D)
     for col in columns:  # 为索引列
         print("col=", col)
-        col_tu = tuple(col)
+        col_tu = tuple([col])
         dictpartitions[col_tu] = []
         print(col, data2D[col].tolist())
         # for element in list_duplicates(data2D[a].tolist()):
@@ -325,13 +329,12 @@ def main():
         tempo = generate_next_level(L[i], dictpartitions, tableT)
         L.append(tempo)  # 将生成的层追加到L集合中
         i = i + 1
-
+    print(f'Levels: {L}')
     print("List of all FDs: ", finallistofFDs)
     #  correct result
     #  List of all FDs:  [['C', 'D'], ['C', 'A'], ['C', 'B'], ['AD', 'B'], ['AD', 'C']]
     # Total number of FDs found:  5
     print("Total number of FDs found: ", len(finallistofFDs))
-    print(L)
 
 
 if __name__ == '__main__':

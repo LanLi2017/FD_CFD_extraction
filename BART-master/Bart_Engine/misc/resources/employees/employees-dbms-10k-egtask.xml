@@ -10,10 +10,10 @@
         <type>DBMS</type>
         <access-configuration>
             <driver>org.postgresql.Driver</driver>
-            <uri>jdbc:postgresql:bart_employees_&SIZE;</uri>
+            <uri>jdbc:postgresql://localhost:5432/bart_employees_&SIZE;</uri>
             <schema>source</schema>
-            <login>pguser</login>
-            <password>pguser</password>
+            <login>postgres</login>
+            <password>root</password>
         </access-configuration>
         <import createTables="true">
             <input table="md" type="xml">xml/&SIZE;tuples_md.xml</input>
@@ -23,10 +23,10 @@
         <type>DBMS</type>
         <access-configuration>
             <driver>org.postgresql.Driver</driver>
-            <uri>jdbc:postgresql:bart_employees_&SIZE;</uri>
+            <uri>jdbc:postgresql://localhost:5432/bart_employees_&SIZE;</uri>
             <schema>target</schema>
-            <login>pguser</login>
-            <password>pguser</password>
+            <login>postgres</login>
+            <password>root</password>
         </access-configuration>
         <import createTables="true">
             <input table="emp" type="xml">xml/&SIZE;tuples_emp.xml</input>

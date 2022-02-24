@@ -80,6 +80,7 @@ def compute_dependencies(level, listofcols, dictCplus, finallistofCFDs, dictpart
                     if validcfd(del_, x, a, newtup, sp, ca, dictpartitions) and not (
                             [del_, a, [newtup, ca]] in finallistofCFDs):
                         finallistofCFDs.append([del_, a, [newtup, ca]])
+                        print(f'adding cfds: {[del_, a, [newtup, ca]]}')
                         for (xx, up) in level:
                             if xx == x:
                                 newtup0 = spXminusA(up, x, a)
@@ -286,11 +287,11 @@ def sortspbasedonx(x, sp):
 #     infile = str(sys.argv[1])
 # if len(sys.argv) > 2:
 #     k = int(sys.argv[2])
-def main():
-    infile = 'data/testdata3.csv'
+def main(infile, k=2):
+    # infile = 'data/testdata3.csv'
     data2D = read_csv(infile)
     print(data2D)
-    k = 2
+    # k = 2
 
     totaltuples = len(data2D.index)
     listofcolumns = list(data2D.columns.values)  # returns ['A', 'B', 'C', 'D', .....]
@@ -314,6 +315,7 @@ def main():
             dictCplus = computeCplus(L[l], dictCplus)
         finallistofCFDs, dictCplus = compute_dependencies(L[l], listofcolumns[:], dictCplus, finallistofCFDs,
                                                           dictpartitions)
+        print(f'after computing dependencies: {dictpartitions}')
         L[l] = prune(L[l], dictCplus)
         temp = generate_next_level(L[l], tableT, dictpartitions, k_suppthreshold)
         L.append(temp)

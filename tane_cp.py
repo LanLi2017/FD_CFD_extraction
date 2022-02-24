@@ -217,11 +217,16 @@ def prune(level, dictCplus, finallistofFDs, dictpartitions):
 def generate_next_level(level, dictpartitions, tableT):
     # 首先令 L[i+1] 这一层为空集
     nextlevel = []
+    print(f'level is : {level}')
     for i in range(0, len(level)):  # pick an element
         for j in range(i + 1, len(level)):  # compare it to every element that comes after it.
             # 如果这两个元素属于同一个前缀块，那么就可以合并:只有最后一个属性不同，其余都相同
+            print(f'current i: {i}; current j : {j}')
+            print(f'the last level of i? : {level[i][0:-1]}')
+            print(f'the last level of j? : {level[j][0:-1]}')
             if (not level[i] == level[j]) and level[i][0:-1] == level[j][0:-1]:  # i.e. line 2 and 3
                 x = tuple(level[i]) + tuple(level[j][-1])  # line 4
+                print(f'current x: {x}')
                 flag = True
                 for a in x:  # this entire for loop is for the 'for all' check in line 5
                     new_tu = tuple(t for t in x if t != a)
@@ -267,15 +272,6 @@ def stripped_product(x, y, z, dictpartitions, tableT):
     return dictpartitions
 
 
-def computeSingletonPartitions(listofcols, data2D, dictpartitions):
-    for a in listofcols:
-        dictpartitions[a] = []
-        for element in list_duplicates(data2D[
-                                           a].tolist()):  # list_duplicates returns 2-tuples, where 1st is a value, and 2nd is a list of indices where that value occurs
-            if len(element[1]) > 1:  # ignore singleton equivalence classes
-                dictpartitions[a].append(element[1])
-
-
 # ------------------------------------------------------- START ---------------------------------------------------
 
 # if len(sys.argv) > 1:
@@ -286,8 +282,8 @@ def computeSingletonPartitions(listofcols, data2D, dictpartitions):
 '''测试list_duplicates函数的返回值:返回的是每个属性列表中每个属性的剥离分区'''
 
 
-def main():
-    data2D = read_csv('data/testdata3.csv')
+def main(file):
+    data2D = read_csv(file)
 
     totaltuples = len(data2D.index)
     columns = list(x for x in data2D.columns.values)
@@ -325,6 +321,7 @@ def main():
         dictCplus, finallistofFDs = \
             compute_dependencies(L[i], listofcolumns[:], dictCplus, finallistofFDs, totaltuples,
                                  dictpartitions)  # 计算该层的函数依赖
+        print(f'what is dict Cplus: {dictCplus}')
         L[i], finallistofFDs = prune(L[i], dictCplus, finallistofFDs, dictpartitions)  # 剪枝，删除Li中的集合，修剪搜索空间
         tempo = generate_next_level(L[i], dictpartitions, tableT)
         L.append(tempo)  # 将生成的层追加到L集合中
@@ -335,6 +332,7 @@ def main():
     #  List of all FDs:  [['C', 'D'], ['C', 'A'], ['C', 'B'], ['AD', 'B'], ['AD', 'C']]
     # Total number of FDs found:  5
     print("Total number of FDs found: ", len(finallistofFDs))
+    return finallistofFDs
 
 
 if __name__ == '__main__':

@@ -85,7 +85,7 @@ emp(name: $n2, dept: $d2, salary: $s2, manager: $m2),
         <!--<generateAllChanges>true</generateAllChanges>-->
 
         <!-- Avoid interactions among changes. (default = true) -->
-        <avoidInteractions>false</avoidInteractions>
+<!--        <avoidInteractions>false</avoidInteractions>-->
 
         <!-- Error percentages for dependencies and comparisons 
         All percentages are wrt table sizes (# tuples) -->
@@ -94,16 +94,20 @@ emp(name: $n2, dept: $d2, salary: $s2, manager: $m2),
             <vioGenQueries>
                 <vioGenQuery id="e1">
                     <comparison>(n1 == n2)</comparison>
-                    <percentage>1.0</percentage> 
+                    <percentage>5</percentage>
                 </vioGenQuery>
                 <vioGenQuery id="e1">
                     <comparison>(d1 != d2)</comparison>
-                    <percentage>5.0</percentage> 
-                </vioGenQuery> 
-                <vioGenQuery id="e5">
-                    <comparison>(s2 &lt; s1)</comparison>
-                    <percentage>7</percentage>
+                    <percentage>5</percentage>
                 </vioGenQuery>
+<!--                 <vioGenQuery id="e5">-->
+<!--                    <comparison>(m1 == n2)</comparison>-->
+<!--                    <percentage>5</percentage>-->
+<!--                </vioGenQuery>-->
+<!--                <vioGenQuery id="e5">-->
+<!--                    <comparison>(s2 &lt; s1)</comparison>-->
+<!--                    <percentage>10</percentage>-->
+<!--                </vioGenQuery>-->
             </vioGenQueries>
         </errorPercentages>
     </configuration>

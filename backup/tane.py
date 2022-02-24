@@ -47,33 +47,42 @@ def compute_dependencies(level, listofcols):
     # 通过上层结点{A}计算当前层的每个X的Cplus(X)
     # 或者通过computeCplus
     print('============')
+    print(f'what is current level: {level}')
     print(f'what is dict C plus: {dictCplus}')
     for x in level:
         thesets = []
         for a in x:
+            print(f'a is : {a}')
             if x.replace(a, '') in dictCplus.keys():  # 如果Cplus(X\A) 已经在当前右方集List中
                 temp = dictCplus[x.replace(a, '')]  # temp存入的是Cplus(X\A) -- 即X\A的右集合
+                print(f'x is {x}')
+                print('yes')
+                print(dictCplus)
             else:  # 否则，计算右方集
                 temp = computeCplus(x.replace(a, ''))  # compute C+(X\{A}) for each A at a time
                 dictCplus[x.replace(a, '')] = temp  # 存入dictCplus中
+                print(f'x is {x}')
+                print('no')
+                print(dictCplus)
+            print(temp)
             thesets.insert(0, set(temp))  # 通过set, 将temp转化成集合，再将该对象插入到列表的第0个位置
         if not list(set.intersection(*thesets)):  # set.intersection(set1, set2, ...ect)求并集
             dictCplus[x] = []
         else:
+            print(f'here x is {x}')
             dictCplus[x] = list(set.intersection(*thesets))  # compute the intersection in line 2 of pseudocode
+        print(f'current dictCplus: {dictCplus}')
 
     # Fun2: 找到最小函数依赖
     # 并对Cplus进行剪枝（最小性剪枝）： 1.删掉已经成立的。 2去掉必不可能的 留下的是"仍有希望的"
-    print(f'level is {level}')
     for x in level:
-        print(x)
+        print(f'for each x in level: {x}')
         for a in x:
             if a in dictCplus[x]:
                 print(f'current a: {a} ')
                 # if x=='BCJ': print "dictCplus['BCJ'] = ", dictCplus[x]
                 print(f'current x: {x}')
                 print(f'delete element a: {x.replace(a, "")}')
-                print(x)
                 if validfd(x.replace(a, ''), a):  # line 5 即x\{A} -> A 函数依赖成立
                     finallistofFDs.append([x.replace(a, ''), a])  # line 6
                     print(f'compute_dependencies: level{level} adding key FD: {[x.replace(a, ""), a]}')
@@ -84,7 +93,6 @@ def compute_dependencies(level, listofcols):
                     for j in x:  # this loop computes R\X
                         if j in listofcols:
                             listofcols.remove(j)
-                    print('bug might occur here...')
                     print(listofcols)
                     for b in listofcols:  # this loop removes each b in R\X from C+(X)
                         print(f'b is {b}')
@@ -100,7 +108,8 @@ def computeCplus(x):
     # output should be a list of single attributes
     global listofcolumns
     listofcols = listofcolumns[:]
-    if x == '': return listofcols  # because C+{phi} = R
+    if x == '':
+        return listofcols  # because C+{phi} = R
     cplus = []
     for a in listofcols:  # A属于R并满足如下条件
         for b in x:
@@ -115,6 +124,7 @@ def validfd(y, z):
     print(f'validefd : {y}; {z}')
     if y == '' or z == '':
         return False
+    print('it is valid cfd!')
     ey = computeE(y)
     print(y+z)
     eyz = computeE(y + z)
@@ -130,8 +140,13 @@ def computeE(x):  # 属性集为x
     global dictpartitions  # 关于每个属性集的剥离分区
     doublenorm = 0
     for i in dictpartitions[''.join(sorted(x))]:
+        print(f'for i : {i} in dictpartitions {x}')
         doublenorm = doublenorm + len(i)
     e = (doublenorm - len(dictpartitions[''.join(sorted(x))])) / float(totaltuples)
+    print(doublenorm)
+    print(len(dictpartitions[''.join(sorted(x))]))
+    print(totaltuples)
+    print(e)
     return e
 
 
@@ -160,12 +175,13 @@ def prune(level):
             for i in x:  # this loop computes C+(X) \ X
                 if i in temp:
                     temp.remove(i)
-            print(f'before remove: {temp}')
+            print(f'after remove: {temp}')
             for a in temp:  # line 5: for each a 属于 Cplus(X)\X do
                 thesets = []
                 # 计算Cplus((X+A)\ {B})
                 for b in x:
-                    print('errors might happen here.....')
+                    print(f'what is x: {x}')
+                    print(f'what is b: {b}')
                     print(''.join(sorted((x + a).replace(b, ''))))
                     print(f'keys for Cplus: {dictCplus.keys()}')
                     if not (''.join(sorted((x + a).replace(b, ''))) in dictCplus.keys()):
@@ -256,7 +272,7 @@ def computeSingletonPartitions(listofcols):
 # 此时考虑的属性集只有A,B,C,D，在单个属性集上面生成剥离分区
 '''测试list_duplicates函数的返回值:返回的是每个属性列表中每个属性的剥离分区'''
 
-data2D = read_csv('data/testdata3.csv')
+data2D = read_csv('../data/testdata3.csv')
 
 totaltuples = len(data2D.index)
 listofcolumns = list(data2D.columns.values)  # returns ['A', 'B', 'C', 'D', .....]
@@ -285,6 +301,7 @@ L1 = listofcolumns[:]  # L1 is a copy of listofcolumns
 i = 1
 L0 = []
 L = [L0, L1]
+print(f'initial level: {L}')
 tableT = ['NULL'] * totaltuples  # this is for the table T used in the function stripped_product
 print(f'tableT: {tableT}')
 while not (L[i] == []):  # 第i层的包含的属性集不为空

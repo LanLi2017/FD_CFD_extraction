@@ -33,11 +33,20 @@ def add_element_in_tuple(spxminusa, ca):
 
 def validcfd(xminusa, x, a, spxminusa, sp, ca):
     global dictpartitions
+    print(f'in valid cfd, x is {x}')
+    print(f'in valid cfd, a is {a}')
     if xminusa == '' or a == '':
         return False
     indexofa = x.index(a)
     newsp0 = add_element_in_tuple(spxminusa, ca)
+    print(f'old sp: {sp}')
+    print(f'ca: {ca}')
     newsp1 = replace_element_in_tuple(sp, indexofa, ca)  # this is sp, except that in place of value of a we put ca
+    print(f'new sp: {newsp1}')
+    print(f'in valid cfds: x minus a : {xminusa}; sp(x) minus a : {spxminusa}')
+    print(f'what is dict partitions: {dictpartitions}')
+    print(f'parition for x minus a: {dictpartitions[(xminusa, spxminusa)]}; '
+          f'partition for x: {dictpartitions[( x,newsp1)]}')
     if (x, newsp1) in dictpartitions.keys():
         if len(dictpartitions[(xminusa, spxminusa)]) == len(dictpartitions[(
                 x,
@@ -59,7 +68,7 @@ def greaterthanorequalto(upxminusa, spxminusa):  # this is actually greaterthan 
     flag = True
     for index in range(0, len(upxminusa)):
         if not (spxminusa[index] == '--'):
-            if (not (upxminusa[index] == spxminusa[index])):
+            if not (upxminusa[index] == spxminusa[index]):
                 flag = False
     return flag
 
@@ -89,23 +98,34 @@ def compute_dependencies(level, listofcols):
                                        a)  ### tuple(y for y in sp if not sp.index(y)==x.index(a)) # this is sp[X\A]
                     if validcfd(x.replace(a, ''), x, a, newtup, sp, ca) and not (
                             [x.replace(a, ''), a, [newtup, ca]] in finallistofCFDs):
+                        print(f"adding cfds: {[x.replace(a, ''), a, [newtup, ca]]}")
                         finallistofCFDs.append([x.replace(a, ''), a, [newtup, ca]])
                         for (xx, up) in level:
+                            print(f'xx is {xx}; up is {up}')
                             if xx == x:
                                 newtup0 = spXminusA(up, x,
                                                     a)  ### tuple(y for y in up if not up.index(y)==x.index(a)) # this is up[X\A]
+                                print(f'what is new tuple? : {newtup0}')
                                 if up[x.index(a)] == ca[0] and greaterthanorequalto(newtup0, newtup):
-                                    if (a, ca) in dictCplus[(x, up)]: dictCplus[(x, up)].remove((a, ca))
+                                    if (a, ca) in dictCplus[(x, up)]:
+                                        dictCplus[(x, up)].remove((a, ca))
+                                        print(f'what to remove from dict C plus first? : {(a, ca)}')
                                     listofcolscopy = listofcols[:]
                                     for j in x:  # this loop computes R\X
-                                        if j in listofcolscopy: listofcolscopy.remove(j)
+                                        if j in listofcolscopy:
+                                            print(f'here you need to remove {j} from {listofcolscopy}')
+                                            listofcolscopy.remove(j)
+                                    print(f'remove columns : {listofcolscopy}')
                                     for b_att in listofcolscopy:  # this loop removes each b in R\X from C+(X,up)
                                         stufftobedeleted = []
                                         for (bbval, sometup) in dictCplus[(x, up)]:
                                             if b_att == bbval:
                                                 stufftobedeleted.append((bbval, sometup))
+                                        print(f'what to remove? {stufftobedeleted}')
                                         for item in stufftobedeleted:
                                             dictCplus[(x, up)].remove(item)
+                                        print(f'after removing: dict C plus')
+                                        pprint(dictCplus)
 
 
 def prune(level):
@@ -143,6 +163,7 @@ def computeCplus(
 def initial_Cplus(level):
     global listofcolumns
     global dictCplus
+    print(f'in initial C plus: dict Cplus-{dictCplus}')
     computeCplus(level)
     for (a, ca) in level:
         stufftobedeleted = []
@@ -157,9 +178,11 @@ def populateL1(listofcols):
     global k_suppthreshold
     l1 = []
     attributepartitions = computeAttributePartitions(listofcols)
+    print(f'what is attribute partitions: {attributepartitions}')
     for a in listofcols:
         l1.append((a, ('--',)))
         for eqclass in attributepartitions[a]:
+
             if len(eqclass) >= k_suppthreshold:
                 l1.append((a, (str(data2D.iloc[eqclass[0]][a]),)))
     computeInitialPartitions(l1,
@@ -191,10 +214,13 @@ def old_computeInitialPartitions(level1, attributepartitions):
 def computeAttributePartitions(listofcols):  # compute partitions for every attribute
     global data2D
     attributepartitions = {}
+
     for a in listofcols:
         attributepartitions[a] = []
         for element in list_duplicates(data2D[
-                                           a].tolist()):  # list_duplicates returns 2-tuples, where 1st is a value, and 2nd is a list of indices where that value occurs
+                                           a].tolist()):  # list_duplicates returns 2-tuples,
+            print(f"for each element in list_duplicates- {list_duplicates(data2D[a].tolist())}: {element}")
+            # where 1st is a value, and 2nd is a list of indices where that value occurs
             if len(element[1]) > 0:  # if >1, then ignore singleton equivalence classes
                 attributepartitions[a].append(element[1])
     return attributepartitions
@@ -295,10 +321,11 @@ def sortspbasedonx(x, sp):
 
 infile = 'data/testdata3.csv'
 data2D = read_csv(infile)
-k = 3
+k = 2
 
 totaltuples = len(data2D.index)
 listofcolumns = list(data2D.columns.values)  # returns ['A', 'B', 'C', 'D', .....]
+print(listofcolumns)
 tableT = ['NULL'] * totaltuples  # this is for the table T used in the function partition_product
 k_suppthreshold = k
 L0 = []
@@ -308,15 +335,19 @@ finallistofCFDs = []
 L1 = populateL1(listofcolumns[
                 :])  # L1 is a list of tuples of the form [ ('A', ('val1') ), ('A', ('val2') ), ..., ('B', ('val3') ), ......]
 dictCplus = {('', ()): L1[:]}
+print(f'initial C plus: {dictCplus}')
 l = 1
 L = [L0, L1]
-
+print(f'initial level: {L}')
+print(f'dict partitions are {dictpartitions}')
 while not (L[l] == []):
+    print(f'Level {l} is : {L[l]}')
     if l == 1:
         initial_Cplus(L[l])
     else:
         computeCplus(L[l])
     compute_dependencies(L[l], listofcolumns[:])
+    print(f'after compute dependencies: dict partitions: {dictpartitions}')
     prune(L[l])
     temp = generate_next_level(L[l])
     L.append(temp)

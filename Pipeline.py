@@ -3,6 +3,8 @@ import sys
 from ctane_cp import main as ctane
 from tane_cp import main as tane
 
+from utils.evaluation import evaluate_FDs
+
 def tune_parameters():
     pass
 
@@ -18,6 +20,17 @@ def run():
     use_func = ['TANE', 'CTANE']
     list_of_fds_dirty = tane(dirty_data_path)  # TANE with messy data
     list_of_fds_gt = tane(clean_data_path) # TANE with clean data
+
+    print("dirty FDs: " + str(list_of_fds_dirty))
+    print("ground truth FDs: " + str(list_of_fds_gt))
+
+    accuracy, precison, recall, f1 = evaluate_FDs(list_of_fds_gt, list_of_fds_dirty)
+    print("-------------------------")
+    print("evaluating tane FDs...")
+    print("-------------------------")
+    print("accuracy: %.3f\nprecison: %.3f\nrecall: %.3f\nf1: %.3f"% \
+        (accuracy, precison, recall, f1))
+    print("-------------------------")
 
     # ctane(dirty_data_path, k=2)
 

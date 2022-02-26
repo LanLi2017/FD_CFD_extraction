@@ -38,8 +38,6 @@ def findCplus(x, dictCplus):  # this computes the Cplus of x as an intersection 
         else:
             del_x = tuple(list_x)
         # 计算的过程涉及了递归
-        print('My confusion')
-        print(del_x)
         if del_x in dictCplus:
             print(f'{del_x} in {dictCplus.keys()}')
             temp = dictCplus[del_x]
@@ -71,8 +69,6 @@ def compute_dependencies(level, listofcols, dictCplus, finallistofFDs, totaltupl
     # FUN1: 计算所有X属于Li的右方集Cplus
     # 通过上层结点{A}计算当前层的每个X的Cplus(X)
     # 或者通过computeCplus
-    print('++++')
-    print(f'current level is : {level}')
     for x in level:
         thesets = []
         for a in x:
@@ -86,17 +82,12 @@ def compute_dependencies(level, listofcols, dictCplus, finallistofFDs, totaltupl
                 temp = computeCplus(del_x, listofcols, totaltuples,
                                     dictpartitions)  # compute C+(X\{A}) for each A at a time
                 dictCplus[del_x] = temp  # 存入dictCplus中
-                print(f'save {del_x} into dict C plus:')
-                pprint(dictCplus)
             thesets.insert(0, set(temp))  # 通过set, 将temp转化成集合，再将该对象插入到列表的第0个位置
-            print('ONE MORE TRY')
         res = set.intersection(*thesets)
         if not list(res):  # set.intersection(set1, set2, ...ect)求并集
             dictCplus[tuple(x)] = []
         else:
             dictCplus[tuple(x)] = list(res)  # compute the intersection in line 2 of pseudocode
-    print('last call!!')
-    pprint(dictCplus)
 
     # Fun2: 找到最小函数依赖
     # 并对Cplus进行剪枝（最小性剪枝）： 1.删掉已经成立的。 2去掉必不可能的 留下的是"仍有希望的"
@@ -104,17 +95,12 @@ def compute_dependencies(level, listofcols, dictCplus, finallistofFDs, totaltupl
         for a in x:
             list_x = list(x)
             tu_a = (a,)
-            print(f'is a : {tu_a} in dict C plus [{x}]? : {dictCplus[x]}')
             if tu_a in dictCplus[x]:
                 list_x.remove(a)
                 del_x = tuple(list_x)
-                print(f'y is remove a {tu_a} from x {x} and get {del_x}')
                 if validfd(del_x, tu_a, totaltuples, dictpartitions):  # line 5 即x\{A} -> A 函数依赖成立
                     finallistofFDs.append([del_x, tu_a])  # line 6
-                    print(f'compute_dependencies: level{level} adding key FD: {[del_x, tu_a]}')
                     dictCplus[x].remove(tu_a)  # line 7
-                    pprint(dictCplus)
-
                     listofcols = listofcols[:]  # 为了下面的剪枝作准备
                     for j in x:  # this loop computes R\X
                         tu_j = (j,)
@@ -232,7 +218,6 @@ def generate_next_level(level, dictpartitions, tableT):
             # 如果这两个元素属于同一个前缀块，那么就可以合并:只有最后一个属性不同，其余都相同
 
             if (not level[i] == level[j]) and level[i][0:-1] == level[j][0:-1]:  # i.e. line 2 and 3
-                print(level[j][-1])
                 # print(set(level[i] + level[j][-1]))
                 x = tuple(sorted(set(level[i] + (level[j][-1],))))
                 # x = tuple([level[i]]) + tuple([level[j][-1]])  # line 4
@@ -258,7 +243,6 @@ def stripped_product(x, y, z, dictpartitions, tableT):
     # partitionY is a list of lists, each list is an equivalence class
     partitionY = dictpartitions[tuple(sorted(y))]
     partitionZ = dictpartitions[tuple(sorted(z))]
-    print("y:%s partitionY:%s,z:%s partitionZ%s" % (y, partitionY, z, partitionZ))
     partitionofx = []  # line 1
     for i in range(len(partitionY)):  # line 2
         for t in partitionY[i]:  # line 3
@@ -277,7 +261,6 @@ def stripped_product(x, y, z, dictpartitions, tableT):
         for t in partitionY[i]:  # line 12
             tableT[t] = 'NULL'
     dictpartitions[tuple(sorted(x))] = partitionofx  # 生成属性集X上的剥离分区
-    print(f'x={tuple(sorted(x))},partitionX={partitionofx}')
     return dictpartitions
 
 
@@ -295,13 +278,10 @@ def main(file):
     data2D = read_csv(file)
 
     totaltuples = len(data2D.index)
-    print(f'The total tuples; {totaltuples}')
     columns = list(x for x in data2D.columns.values)
     listofcolumns = list(tuple([x]) for x in columns)  # returns ['A', 'B', 'C', 'D', .....]
-    print(listofcolumns)
     dictpartitions = {}
     dictCplus = {tuple(): listofcolumns}
-    print(data2D)
     for col in columns:  # 为索引列
         col_tu = tuple([col])
         dictpartitions[col_tu] = []
@@ -311,8 +291,6 @@ def main(file):
                                            col].tolist()):  # list_duplicates returns 2-tuples, where 1st is a value, and 2nd is a list of indices where that value occurs
             if len(element[1]) > 1:  # ignore singleton equivalence classes
                 dictpartitions[col_tu].append(element[1])
-    print(f'dict partitions: {dictpartitions}')  # 存放的是每个属性集上的剥离分区
-    print(f'C plus: {dictCplus}')
 
     finallistofFDs = []
     # 初始时，L1层包含的属性集为：A,B,C,D...
@@ -322,28 +300,17 @@ def main(file):
     L0 = []
     L = [L0, L1]
     tableT = ['NULL'] * totaltuples  # this is for the table T used in the function stripped_product
-    print(f'tableT: {tableT}')
     while L[i]:  # 第i层的包含的属性集不为空
         dictCplus, finallistofFDs, dictpartitions = \
             compute_dependencies(L[i], listofcolumns[:], dictCplus, finallistofFDs, totaltuples,
                                  dictpartitions)  # 计算该层的函数依赖
         dictCplus, finallistofFDs, L[i] = prune(L[i], dictCplus, finallistofFDs, dictpartitions)  # 剪枝，删除Li中的集合，修剪搜索空间
         nextlevel, dictpartitions = generate_next_level(L[i], dictpartitions, tableT)
-        print(f' at level i: {i}; the level {L[i]}')
         L.append(nextlevel)  # 将生成的层追加到L集合中
         i = i + 1
-    print(f'Levels: {L}')
-    print("List of all FDs: ", finallistofFDs)
-    #  correct result
-    #  List of all FDs:  [['C', 'D'], ['C', 'A'], ['C', 'B'], ['AD', 'B'], ['AD', 'C']]
-    # Total number of FDs found:  5
-    print("Total number of FDs found: ", len(finallistofFDs))
-    # assert len(finallistofFDs) == 12
     return finallistofFDs
 
 
 if __name__ == '__main__':
     fp = 'testdata/exp.csv'
-    # fp = 'Database/exp_data/employee_50_egtask_clean.csv'
-    # fp = 'testdata/employee.csv'
     main(fp)

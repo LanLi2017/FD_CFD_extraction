@@ -285,8 +285,6 @@ def sortspbasedonx(x, sp):
 def main(infile, k=30):
     # infile = 'testdata/testdata3.csv'
     data2D = read_csv(infile)
-    print(data2D)
-    # k = 2
 
     totaltuples = len(data2D.index)
     listofcolumns = list(data2D.columns.values)  # returns ['A', 'B', 'C', 'D', .....]
@@ -301,10 +299,6 @@ def main(infile, k=30):
     dictCplus = {((), ()): L1[:]}
     l = 1
     L = [L0, L1]
-    print(f'initial C plus: {dictCplus}')
-    print(f'initial level: {L}')
-    print(f'dict partitions are ')
-    pprint(dictpartitions)  # 存放的是每个属性集上的剥离分区
 
     while L[l]:
         if l == 1:
@@ -317,10 +311,6 @@ def main(infile, k=30):
         temp = generate_next_level(L[l], tableT, dictpartitions, k_suppthreshold)
         L.append(temp)
         l = l + 1
-
-    print("List of all CFDs: ", finallistofCFDs)
-    pprint(finallistofCFDs)
-    print("Total number of CFDs found: ", len(finallistofCFDs))
 
 
 if __name__ == '__main__':

@@ -5,7 +5,7 @@
     **************************************************** -->
     <source>
         <!-- The (optional) source database stores tables that 
-        cannot be modified (for example master data) 
+        cannot be modified (for example master testdata)
         BART will not introduce changes in these tables -->
         <type>DBMS</type>
         <access-configuration>

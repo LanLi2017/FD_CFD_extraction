@@ -287,7 +287,7 @@ def computeSingletonPartitions(listofcols):
 # 此时考虑的属性集只有A,B,C,D，在单个属性集上面生成剥离分区
 '''测试list_duplicates函数的返回值:返回的是每个属性列表中每个属性的剥离分区'''
 #
-data2D = read_csv('data/employee.csv')
+data2D = read_csv('testdata/employee.csv')
 
 totaltuples = len(data2D.index)
 listofcolumns = list(data2D.columns.values)  # returns ['A', 'B', 'C', 'D', .....]

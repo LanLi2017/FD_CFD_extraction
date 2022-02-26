@@ -290,10 +290,10 @@ def sortspbasedonx(x, sp):
 #     infile = str(sys.argv[1])
 # if len(sys.argv) > 2:
 #     k = int(sys.argv[2])
-# infile = '../data/employee_old.csv'
+# infile = '../testdata/employee_old.csv'
 # k = 20
-# infile = '../data/employee_fullname.csv'
-infile = '../data/exp.csv'
+# infile = '../testdata/employee_fullname.csv'
+infile = '../testdata/exp.csv'
 k = 2
 data2D = read_csv(infile)
 

@@ -198,8 +198,8 @@ def computeSingletonPartitions(listofcols):
 # if len(sys.argv) > 1:
 #     infile = str(sys.argv[1])  # this would be e.g. "testdata.csv"
 
-# data2D = read_csv('../data/employee_fullname.csv')
-data2D = read_csv('../data/exp.csv')
+# data2D = read_csv('../testdata/employee_fullname.csv')
+data2D = read_csv('../testdata/exp.csv')
 totaltuples = len(data2D.index)
 listofcolumns = list(data2D.columns.values)  # returns ['A', 'B', 'C', 'D', .....]
 

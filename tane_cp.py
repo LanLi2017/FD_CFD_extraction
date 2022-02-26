@@ -343,6 +343,7 @@ def main(file):
 
 
 if __name__ == '__main__':
-    fp = 'Database/exp_data/employee_50_egtask_clean.csv'
-    # fp = 'data/employee.csv'
+    fp = 'testdata/exp.csv'
+    # fp = 'Database/exp_data/employee_50_egtask_clean.csv'
+    # fp = 'testdata/employee.csv'
     main(fp)

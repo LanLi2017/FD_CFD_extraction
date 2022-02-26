@@ -125,11 +125,11 @@ def exe_stats(dirty_db, clean_db):
 
     # if n1==n2; ==> d1 != d2
     print("The second test is on rule-based violation parameter:")
-    print('Dirty data: Data distribution in column department ')
+    print('Dirty testdata: Data distribution in column department ')
     dep_collection_list = get_col_list(2, dirty_db)
     name_dep_dict = get_rules(dep_collection_list, dup_name_value_list, dup_name_id_list, name_collection_list)
 
-    print('Clean data: Data distribution in column department:')
+    print('Clean testdata: Data distribution in column department:')
     dep_collection_clean_list = get_col_list(2, clean_db)
     name_dep_clean_dict = get_rules(dep_collection_clean_list, dup_name_v_clean_list, dup_name_id_clean_list,
                                     name_collect_clean)

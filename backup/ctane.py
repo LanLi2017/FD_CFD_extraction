@@ -324,10 +324,12 @@ def sortspbasedonx(x, sp):
 # if len(sys.argv) > 2:
 #     k = int(sys.argv[2])
 
-# infile = 'data/testdata3.csv'
-infile = '../data/exp.csv'
+# infile = 'testdata/testdata3.csv'
+# infile = '../testdata/exp.csv'
+# infile = '../Database/exp_data/employee_50_egtask_clean.csv'
+infile = '../testdata/employee.csv'
 data2D = read_csv(infile)
-k = 2
+k = 30
 
 totaltuples = len(data2D.index)
 listofcolumns = list(data2D.columns.values)  # returns ['A', 'B', 'C', 'D', .....]

@@ -64,13 +64,11 @@ def greaterthanorequalto(upxminusa, spxminusa):  # this is actually greaterthan 
 
 
 def compute_dependencies(level, listofcols, dictCplus, finallistofCFDs, dictpartitions):
-    print('what is dictplus?')
-    pprint(dictCplus)
     for (x, sp) in level:
         for a in x:
-            tmp = list(x)
             for (att, ca) in dictCplus[(x, sp)]:
-                if att == tuple(a):
+                tmp = list(x)
+                if att == (a,):
                     newtup = spXminusA(sp, x, a)
                     tmp.remove(a)
                     if not tmp:
@@ -80,23 +78,20 @@ def compute_dependencies(level, listofcols, dictCplus, finallistofCFDs, dictpart
                     if validcfd(del_, x, a, newtup, sp, ca, dictpartitions) and not (
                             [del_, a, [newtup, ca]] in finallistofCFDs):
                         finallistofCFDs.append([del_, a, [newtup, ca]])
-                        print(f'adding cfds: {[del_, a, [newtup, ca]]}')
                         for (xx, up) in level:
                             if xx == x:
                                 newtup0 = spXminusA(up, x, a)
                                 if up[x.index(a)] == ca[0] and greaterthanorequalto(newtup0, newtup):
-                                    if (tuple(a), ca) in dictCplus[(x, up)]:
-                                        dictCplus[(x, up)].remove((tuple(a), ca))
+                                    if ((a,), ca) in dictCplus[(x, up)]:
+                                        dictCplus[(x, up)].remove(((a,), ca))
                                     listofcolscopy = listofcols[:]
                                     for j in x:  # this loop computes R\X
-                                        print(f'what is j?: {j}')
-                                        print(listofcolscopy)
                                         if j in listofcolscopy:
                                             listofcolscopy.remove(j)
                                     for b_att in listofcolscopy:  # this loop removes each b in R\X from C+(X,up)
                                         stufftobedeleted = []
                                         for (bbval, sometup) in dictCplus[(x, up)]:
-                                            if tuple(b_att) == bbval:
+                                            if (b_att,) == bbval:
                                                 stufftobedeleted.append((bbval, sometup))
                                         for item in stufftobedeleted:
                                             dictCplus[(x, up)].remove(item)
@@ -157,8 +152,7 @@ def populateL1(listofcols, k_suppthreshold, data2D, dictpartitions):
     attributepartitions = computeAttributePartitions(listofcols, data2D)
     for a in listofcols:
         # tu_a = tuple([a])
-        tu_a = tuple(a)
-        print(tu_a)
+        tu_a = (a,)
         l1.append((tu_a, ('--',)))
         for eqclass in attributepartitions[tu_a]:
             if len(eqclass) >= k_suppthreshold:
@@ -179,7 +173,7 @@ def computeInitialPartitions(level1, attributepartitions, dictpartitions):
 def computeAttributePartitions(listofcols, data2D):  # compute partitions for every attribute
     attributepartitions = {}
     for a in listofcols:
-        tu_a = tuple(a)
+        tu_a = (a,)
         attributepartitions[tu_a] = []
         for element in list_duplicates(data2D[
                                            a].tolist()):  # list_duplicates returns 2-tuples, where 1st is a value, and 2nd is a list of indices where that value occurs
@@ -212,7 +206,8 @@ def generate_next_level(level, tableT, dictpartitions, k):
         for j in range(i + 1, len(level)):  # compare it to every element that comes after it.
             if ((not level[i][0] == level[j][0]) and level[i][0][0:-1] == level[j][0][0:-1] and level[i][1][0:-1] ==
                     level[j][1][0:-1]):
-                z = tuple(level[i][0]) + tuple(level[j][0][-1])
+                z = level[i][0] + (level[j][0][-1],)
+                # z = tuple(level[i][0]) + tuple(level[j][0][-1])
                 up = tuple(list(level[i][1]) + [level[j][1][-1]])
                 (z, up) = sortspbasedonx(z, up)
                 partition_product((z, up), level[i], level[j], tableT, dictpartitions)
@@ -287,8 +282,8 @@ def sortspbasedonx(x, sp):
 #     infile = str(sys.argv[1])
 # if len(sys.argv) > 2:
 #     k = int(sys.argv[2])
-def main(infile, k=2):
-    # infile = 'data/testdata3.csv'
+def main(infile, k=30):
+    # infile = 'testdata/testdata3.csv'
     data2D = read_csv(infile)
     print(data2D)
     # k = 2
@@ -303,29 +298,34 @@ def main(infile, k=2):
     finallistofCFDs = []
     L1, dictpartitions = populateL1(listofcolumns[:], k_suppthreshold, data2D,
                     dictpartitions)  # L1 is a list of tuples of the form [ ('A', ('val1') ), ('A', ('val2') ), ..., ('B', ('val3') ), ......]
-    dictCplus = {(tuple(), ()): L1[:]}
+    dictCplus = {((), ()): L1[:]}
     l = 1
     L = [L0, L1]
+    print(f'initial C plus: {dictCplus}')
+    print(f'initial level: {L}')
+    print(f'dict partitions are ')
     pprint(dictpartitions)  # 存放的是每个属性集上的剥离分区
 
-    while not (L[l] == []):
+    while L[l]:
         if l == 1:
             dictCplus = initial_Cplus(L[l], dictCplus)
         else:
             dictCplus = computeCplus(L[l], dictCplus)
         finallistofCFDs, dictCplus = compute_dependencies(L[l], listofcolumns[:], dictCplus, finallistofCFDs,
                                                           dictpartitions)
-        print(f'after computing dependencies: {dictpartitions}')
         L[l] = prune(L[l], dictCplus)
         temp = generate_next_level(L[l], tableT, dictpartitions, k_suppthreshold)
         L.append(temp)
         l = l + 1
-        print("List of all CFDs: ", finallistofCFDs)
-        print("CFDs found: ", len(finallistofCFDs), ", level = ", l - 1)
 
     print("List of all CFDs: ", finallistofCFDs)
+    pprint(finallistofCFDs)
     print("Total number of CFDs found: ", len(finallistofCFDs))
 
 
 if __name__ == '__main__':
-    main()
+    # main('testdata/employee_old.csv')
+    # main('testdata/employee_fullname.csv')
+    # main('testdata/exp.csv')
+    # main('testdata/emplcsv')
+    main('database/exp_data/employee_50_egtask_clean.csv')

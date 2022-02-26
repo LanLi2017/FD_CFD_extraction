@@ -18,8 +18,8 @@ def run():
     clean_data_path = 'Database/exp_data/employee_50_egtask_clean.csv'
     dirty_data_path = 'Database/exp_data/employee_50_egtask_dirty.csv' # add 4 dirty cells [e1]
     use_func = ['TANE', 'CTANE']
-    list_of_fds_dirty = tane(dirty_data_path)  # TANE with messy data
-    list_of_fds_gt = tane(clean_data_path) # TANE with clean data
+    list_of_fds_dirty = tane(dirty_data_path)  # TANE with messy testdata
+    list_of_fds_gt = tane(clean_data_path) # TANE with clean testdata
 
     print("dirty FDs: " + str(list_of_fds_dirty))
     print("ground truth FDs: " + str(list_of_fds_gt))

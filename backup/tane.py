@@ -7,6 +7,8 @@ Please do not re-distribute without written permission from the author
 Any commerical uses strictly forbidden.
 Code is provided without any guarantees.
 ----------------------------------------------------------------------------------------------"""
+from pprint import pprint
+
 from pandas import *
 from collections import defaultdict
 import numpy as NP
@@ -24,6 +26,7 @@ def list_duplicates(seq):
 def findCplus(x):  # this computes the Cplus of x as an intersection of smaller Cplus sets
     global dictCplus
     thesets = []
+    print('Knock knock')
     for a in x:
         # 计算的过程涉及了递归
         if x.replace(a, '') in dictCplus.keys():
@@ -48,30 +51,28 @@ def compute_dependencies(level, listofcols):
     # 或者通过computeCplus
     print('============')
     print(f'what is current level: {level}')
-    print(f'what is dict C plus: {dictCplus}')
     for x in level:
         thesets = []
         for a in x:
             print(f'a is : {a}')
+            print(f'what x here: {x}')
+            diff = x.replace(a, '')
+            print(f'This might be the diff: {diff}')
             if x.replace(a, '') in dictCplus.keys():  # 如果Cplus(X\A) 已经在当前右方集List中
                 temp = dictCplus[x.replace(a, '')]  # temp存入的是Cplus(X\A) -- 即X\A的右集合
-                print(f'x is {x}')
-                print('yes')
-                print(dictCplus)
             else:  # 否则，计算右方集
                 temp = computeCplus(x.replace(a, ''))  # compute C+(X\{A}) for each A at a time
                 dictCplus[x.replace(a, '')] = temp  # 存入dictCplus中
-                print(f'x is {x}')
-                print('no')
-                print(dictCplus)
             print(temp)
             thesets.insert(0, set(temp))  # 通过set, 将temp转化成集合，再将该对象插入到列表的第0个位置
+            print('Last call!!!')
+
         if not list(set.intersection(*thesets)):  # set.intersection(set1, set2, ...ect)求并集
             dictCplus[x] = []
         else:
             print(f'here x is {x}')
             dictCplus[x] = list(set.intersection(*thesets))  # compute the intersection in line 2 of pseudocode
-        print(f'current dictCplus: {dictCplus}')
+        pprint(dictCplus)
 
     # Fun2: 找到最小函数依赖
     # 并对Cplus进行剪枝（最小性剪枝）： 1.删掉已经成立的。 2去掉必不可能的 留下的是"仍有希望的"
@@ -87,7 +88,7 @@ def compute_dependencies(level, listofcols):
                     finallistofFDs.append([x.replace(a, ''), a])  # line 6
                     print(f'compute_dependencies: level{level} adding key FD: {[x.replace(a, ""), a]}')
                     dictCplus[x].remove(a)  # line 7
-                    print(f'current dict C plus: {dictCplus}')
+                    pprint(dictCplus)
 
                     listofcols = listofcols[:]  # 为了下面的剪枝作准备
                     for j in x:  # this loop computes R\X
@@ -101,6 +102,8 @@ def compute_dependencies(level, listofcols):
                         if b in dictCplus[x]:
                             dictCplus[x].remove(b)
                         print(f'current dict Cplus: {dictCplus}')
+    print('New Information!')
+    print(finallistofFDs)
 
 
 def computeCplus(x):
@@ -113,25 +116,29 @@ def computeCplus(x):
     cplus = []
     for a in listofcols:  # A属于R并满足如下条件
         for b in x:
+            print('Pay attention!')
+            print(f'before remove: {x}')
             temp = x.replace(a, '')
             temp = temp.replace(b, '')
+            print(temp)
             if not validfd(temp, b):
                 cplus.append(a)
     return cplus
 
 
 def validfd(y, z):
-    print(f'validefd : {y}; {z}')
+    print('Look at this!')
     if y == '' or z == '':
+        print(f'{y} == " "')
         return False
-    print('it is valid cfd!')
     ey = computeE(y)
-    print(y+z)
     eyz = computeE(y + z)
 
     if ey == eyz:
+        print(f'{y}, {y + z} ==> {ey} == {eyz}')
         return True
     else:
+        print(f'{y}, {y + z} ==> {ey} != {eyz}')
         return False
 
 
@@ -143,15 +150,16 @@ def computeE(x):  # 属性集为x
         print(f'for i : {i} in dictpartitions {x}')
         doublenorm = doublenorm + len(i)
     e = (doublenorm - len(dictpartitions[''.join(sorted(x))])) / float(totaltuples)
-    print(doublenorm)
-    print(len(dictpartitions[''.join(sorted(x))]))
-    print(totaltuples)
-    print(e)
+    # print(doublenorm)
+    # print(len(dictpartitions[''.join(sorted(x))]))
+    # print(totaltuples)
+    # print(e)
     return e
 
 
 def check_superkey(x):
     global dictpartitions
+    print(dictpartitions)
     if (dictpartitions[x] == [[]]) or (dictpartitions[x] == []):  # 如果剥离分区为空， 则说明pi_x 只有单例等价类组成
         return True
     else:
@@ -162,12 +170,17 @@ def prune(level):
     global dictCplus
     global finallistofFDs
     # stufftobedeletedfromlevel = []
+    print(f'before remove: level {level}')
     for x in level:  # line 1
         '''Angle 1: 右方集修建'''
+        print(f'what is x: {x}')
+        print(f'{dictCplus[x]}')
         if not dictCplus[x]:  # line 2
+            print(f'x should be {x}')
             level.remove(x)  # line 3
         '''Angle 2: 键修建'''
-        if check_superkey(x):  # line 4   ### should this check for a key, instead of super key??? Not sure.
+        print(f'current level: {level}')
+        if check_superkey(''.join(sorted(x))):  # line 4   ### should this check for a key, instead of super key??? Not sure.
             temp = dictCplus[x][:]  # 初始化temp 为computes cplus(X)
             print(f'begin..... temp: {temp}')
 
@@ -180,10 +193,6 @@ def prune(level):
                 thesets = []
                 # 计算Cplus((X+A)\ {B})
                 for b in x:
-                    print(f'what is x: {x}')
-                    print(f'what is b: {b}')
-                    print(''.join(sorted((x + a).replace(b, ''))))
-                    print(f'keys for Cplus: {dictCplus.keys()}')
                     if not (''.join(sorted((x + a).replace(b, ''))) in dictCplus.keys()):
                         # ''.join(sorted((x+a).replace(b,''))表示的就是XU{a}\{b}
                         dictCplus[''.join(sorted((x + a).replace(b, '')))] = findCplus(
@@ -192,12 +201,13 @@ def prune(level):
                 # 4. 计算Cplus((X+A)\ {B})交集，判断a是否在其中
                 if a in list(set.intersection(*thesets)):  # line 6
                     finallistofFDs.append([x, a])  # line 7
-                    print(f'pruning: level: {level} adding key FD: {(level, [x, a])}')
                 # print "adding key FD: ", [x,a]
             if x in level:
                 level.remove(x)  # 只要x是超键， 就要剪掉x
                 # stufftobedeletedfromlevel.append(x)  # line 8
-
+    print('Last call')
+    pprint(dictCplus)
+    print(finallistofFDs)
     # for item in stufftobedeletedfromlevel:
     #     level.remove(item)
 
@@ -208,8 +218,13 @@ def generate_next_level(level):
     for i in range(0, len(level)):  # pick an element
         for j in range(i + 1, len(level)):  # compare it to every element that comes after it.
             # 如果这两个元素属于同一个前缀块，那么就可以合并:只有最后一个属性不同，其余都相同
+            print(f'current level: {level}')
+            print(f'last element: {level[i]} ==> {level[j]}')
+            print(f'previous element: {level[i][0:-1]} ==> {level[j][0:-1]}')
             if (not level[i] == level[j]) and level[i][0:-1] == level[j][0:-1]:  # i.e. line 2 and 3
                 x = level[i] + level[j][-1]  # line 4
+                print(f'Attention! Level : {level[i] }; {level[j][-1]};')
+                print(f'x in current level: {x}')
                 flag = True
                 for a in x:  # this entire for loop is for the 'for all' check in line 5
                     if not (x.replace(a, '') in level):
@@ -271,8 +286,8 @@ def computeSingletonPartitions(listofcols):
 # 测试computeSingletonPartitions
 # 此时考虑的属性集只有A,B,C,D，在单个属性集上面生成剥离分区
 '''测试list_duplicates函数的返回值:返回的是每个属性列表中每个属性的剥离分区'''
-
-data2D = read_csv('../data/testdata3.csv')
+#
+data2D = read_csv('data/employee.csv')
 
 totaltuples = len(data2D.index)
 listofcolumns = list(data2D.columns.values)  # returns ['A', 'B', 'C', 'D', .....]
@@ -317,3 +332,5 @@ print("List of all FDs: ", finallistofFDs)
 # Total number of FDs found:  5
 print("Total number of FDs found: ", len(finallistofFDs))
 print(L)
+pprint(dictpartitions)
+pprint(dictCplus)

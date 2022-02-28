@@ -128,7 +128,7 @@ def tune_parameters(e2_er=[], e3_er=[], e4_er=[], e5_er=[],
 
 
 def run_xml(xml_path):
-    run_path = '../BART-master/Bart_Engine/run.sh'
+    run_path = 'BART-master/Bart_Engine/run.sh'
     subprocess.run([run_path, xml_path], capture_output=True)
     # subprocess.run(f"./BART-master/Bart_Engine/run.sh {xml_path}", shell=True, stdout=subprocess.PIPE,
     #                stderr=subprocess.STDOUT)
@@ -282,9 +282,9 @@ def main(clean_db_path='exp_data/employee_50_egtask_clean.csv',
 
 
 def process(e1_er=[5,5],
-            xml_path='../BART-master/Bart_Engine/misc/resources/employees/employees-dbms-50-egtask.xml',
+            xml_path='BART-master/Bart_Engine/misc/resources/employees/employees-dbms-50-egtask.xml',
             clean_db_path='exp_data/employee_50_egtask_clean.csv',
-            dirty_db_path='exp_data/employee_50_egtask_dirty.csv'):
+            dirty_db_path='exp_data/employee_50_egtask_dirty.csv', **kwargs):
     """ this function is to
     1. tune the parameters from xml file
     2. run xml file with subprocess

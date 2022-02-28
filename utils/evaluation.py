@@ -19,19 +19,27 @@ class FD(object):
 
 
 def evaluate_FDs(y_true, y_pred):
+    c_matches = [] # correctly discovered rules
+    ic_matches = [] # discovered rules not in ground truth
+    miss_matches = [] # missing rules [not be discovered]
     tp, fp, fn = 0, 0, 0
     FDs_pred = [FD(l) for l in y_pred]
     FDs_true = [FD(l) for l in y_true]
 
     for fd in FDs_pred:
+        rule = fd.__str__()
         if fd in FDs_true:
             tp += 1
+            c_matches.append(rule)
         else:
             fp += 1
+            ic_matches.append(rule)
 
     for fd in FDs_true:
+        rule = fd.__str__()
         if fd not in FDs_pred:
             fn += 1
+            miss_matches.append(rule)
 
     accuracy = tp / len(FDs_true)
 
@@ -40,4 +48,4 @@ def evaluate_FDs(y_true, y_pred):
 
     f1 = 2 * (precison * recall / (precison + recall))
 
-    return accuracy, precison, recall, f1
+    return accuracy, precison, recall, f1, c_matches, ic_matches, miss_matches

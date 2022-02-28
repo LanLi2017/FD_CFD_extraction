@@ -5,21 +5,137 @@ from collections import Counter
 from pprint import pprint
 
 import psycopg2
-from config import config
+import xml.etree.ElementTree as ET
 
 
-def connect():
+def tune_parameters(e2_er=[], e3_er=[], e4_er=[], e5_er=[],
+                    e1_er=[],
+                    error_pc_index=4,
+                    xml_path='../BART-master/Bart_Engine/misc/resources/employees/employees-dbms-50-egtask.xml',
+                    e1=False, e2=False, e3=False, e4=False, e5=False):
+    """
+    This function is to change the error percentage
+    or add new elements with new constraints
+    ==> if the constraint already exists, you can not add a same constraint with the different parameters.
+    separately;
+    :param e5: add element e5
+    :param e4: add element e4
+    :param e3: add element e3
+    :param e2: add element e2
+    :param e1: add element e1
+    :param e1_er: error rate for e1: [left_error_rate, right_error_rate]
+    :param e2_er: error rate for e2
+    :param e3_er: error rate for e3
+    :param e4_er: error rate for e4
+    :param e5_er: error rate for e5
+    :param error_pc_index: error percentage block index from the xml file
+    :param xml_path: xml file path
+    :param add_elm: add denial constraints
+    :return:
+    """
+    # this function is to edit the error generation rate in xml
+    # passing the path of xml document to enable the parsing process
+    tree = ET.parse(xml_path)
+    root = tree.getroot()
+
+    config = root[4]
+    print(config)
+    error_pec = config[error_pc_index]
+    print(error_pec)
+    vio_generation = error_pec[1]
+    print(vio_generation)
+    # what are the current constraints?
+    rules = []
+    for elem in vio_generation.findall('vioGenQuery'):
+        # for subelem in elem.findall('vioGenQuery'):
+        # if we know the name of the attribute, access it directly
+        print(elem.get('id'))
+        rules.append(elem.get('id'))
+    print(rules)
+    count_elem = len(rules)
+
+    ''' change error rate '''
+    if e1_er:
+        left_error_pct = e1_er[0]
+        right_error_pct = e1_er[1]
+        res = []
+        for elem in vio_generation:
+            id_elem = elem.get('id')
+            if id_elem == 'e1':
+                res.append(elem)
+
+        for i, rule in enumerate(res):
+            if i == 0:
+                for subelem in rule.iter('percentage'):
+                    subelem.text = str(left_error_pct)
+            elif i == 1:
+                for subelem in rule.iter('percentage'):
+                    subelem.text = str(right_error_pct)
+
+    '''create XML sub-elements adding an element to the vio_generation'''
+    if e1 and ('e1' not in rules):
+        attrib = {'id': 'e1'}
+        element = vio_generation.makeelement('vioGenQuery', attrib)
+        vio_generation.append(element)
+
+        # adding an element to the left
+        attrib_c = {}
+        ET.SubElement(vio_generation[count_elem], 'comparison', attrib_c)
+        vio_generation[count_elem][0].text = '(n1 == n2)'
+
+        ET.SubElement(vio_generation[count_elem], 'percentage', attrib_c)
+        vio_generation[count_elem][1].text = '5'
+
+        # add element on the right
+        attrib = {'id': 'e1'}
+        element = vio_generation.makeelement('vioGenQuery', attrib)
+        vio_generation.append(element)
+        ET.SubElement(vio_generation[count_elem + 1], 'comparison', attrib_c)
+        vio_generation[count_elem + 1][0].text = '(d1 != d2)'
+
+        ET.SubElement(vio_generation[count_elem + 1], 'percentage', attrib_c)
+        vio_generation[count_elem + 1][1].text = '5'
+
+    if e2 and 'e2' not in rules:
+        pass
+
+    if e3 and 'e3' not in rules:
+        pass
+
+    if e4 and 'e4' not in rules:
+        pass
+
+    if e5:
+        attrib = {'id': 'e5'}
+        element = vio_generation.makeelement('vioGenQuery', attrib)
+        vio_generation.append(element)
+
+        # adding an element to the seconditem node
+        attrib_c = {}
+        ET.SubElement(vio_generation[count_elem], 'comparison', attrib_c)
+        vio_generation[count_elem][0].text = '(m1 == n2)'
+
+        attrib_p = {}
+        ET.SubElement(vio_generation[count_elem], 'percentage', attrib_p)
+        vio_generation[count_elem][1].text = '2.0'
+
+    tree.write(xml_path)
+
+
+def run_xml():
+    pass
+
+
+def connect(db='bart_employees_50'):
     """ Connect to the PostgreSQL database server """
     conn = None
     clean_db = []
     dirty_db = []
     try:
-        # read connection parameters
-        params = config()
-
         # connect to the PostgreSQL server
         print('Connecting to the PostgreSQL database...')
-        conn = psycopg2.connect(**params)
+        conn = psycopg2.connect(host='localhost', user='postgres', password='root',
+                                database=db)
 
         # create a cursor
         cur = conn.cursor()
@@ -135,10 +251,10 @@ def exe_stats(dirty_db, clean_db):
                                     name_collect_clean)
 
 
-def main():
+def main(clean_db_path='exp_data/employee_50_egtask_clean.csv',
+         dirty_db_path='exp_data/employee_50_egtask_dirty.csv'
+         ):
     clean_db, dirty_db = connect()
-    clean_db_path = 'exp_data/employee_50_egtask_clean.csv'
-    dirty_db_path = 'exp_data/employee_50_egtask_dirty.csv'
     save_data(clean_db_path, clean_db)
     save_data(dirty_db_path, dirty_db)
     print(f'the length of clean dataset: {len(clean_db)}')
@@ -158,4 +274,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    tune_parameters(e1_er=[5, 5])
+    # main(clean_db_path='exp_data/employee_50_egtask_clean.csv',
+    #      dirty_db_path='exp_data/employee_50_egtask_dirty.csv')

@@ -1,11 +1,21 @@
 #!/usr/bin/python
 # https://www.postgresqltutorial.com/postgresql-python/connect/
 import csv
+import subprocess
 from collections import Counter
 from pprint import pprint
 
 import psycopg2
 import xml.etree.ElementTree as ET
+
+
+def count_elements(vio_generation):
+    # count how many elements under the vioGenQuery now
+    rules = []
+    for elem in vio_generation.findall('vioGenQuery'):
+        rules.append(elem.get('id'))
+    count_elem = len(rules)
+    return count_elem
 
 
 def tune_parameters(e2_er=[], e3_er=[], e4_er=[], e5_er=[],
@@ -45,14 +55,7 @@ def tune_parameters(e2_er=[], e3_er=[], e4_er=[], e5_er=[],
     vio_generation = error_pec[1]
     print(vio_generation)
     # what are the current constraints?
-    rules = []
-    for elem in vio_generation.findall('vioGenQuery'):
-        # for subelem in elem.findall('vioGenQuery'):
-        # if we know the name of the attribute, access it directly
-        print(elem.get('id'))
-        rules.append(elem.get('id'))
-    print(rules)
-    count_elem = len(rules)
+    rules = count_elements(vio_generation)
 
     ''' change error rate '''
     if e1_er:
@@ -74,27 +77,28 @@ def tune_parameters(e2_er=[], e3_er=[], e4_er=[], e5_er=[],
 
     '''create XML sub-elements adding an element to the vio_generation'''
     if e1 and ('e1' not in rules):
+        cur_index = count_elements(vio_generation)
         attrib = {'id': 'e1'}
         element = vio_generation.makeelement('vioGenQuery', attrib)
         vio_generation.append(element)
 
         # adding an element to the left
         attrib_c = {}
-        ET.SubElement(vio_generation[count_elem], 'comparison', attrib_c)
-        vio_generation[count_elem][0].text = '(n1 == n2)'
+        ET.SubElement(vio_generation[cur_index], 'comparison', attrib_c)
+        vio_generation[cur_index][0].text = '(n1 == n2)'
 
-        ET.SubElement(vio_generation[count_elem], 'percentage', attrib_c)
-        vio_generation[count_elem][1].text = '5'
+        ET.SubElement(vio_generation[cur_index], 'percentage', attrib_c)
+        vio_generation[cur_index][1].text = '5'
 
         # add element on the right
         attrib = {'id': 'e1'}
         element = vio_generation.makeelement('vioGenQuery', attrib)
         vio_generation.append(element)
-        ET.SubElement(vio_generation[count_elem + 1], 'comparison', attrib_c)
-        vio_generation[count_elem + 1][0].text = '(d1 != d2)'
+        ET.SubElement(vio_generation[cur_index + 1], 'comparison', attrib_c)
+        vio_generation[cur_index + 1][0].text = '(d1 != d2)'
 
-        ET.SubElement(vio_generation[count_elem + 1], 'percentage', attrib_c)
-        vio_generation[count_elem + 1][1].text = '5'
+        ET.SubElement(vio_generation[cur_index + 1], 'percentage', attrib_c)
+        vio_generation[cur_index + 1][1].text = '5'
 
     if e2 and 'e2' not in rules:
         pass
@@ -106,24 +110,28 @@ def tune_parameters(e2_er=[], e3_er=[], e4_er=[], e5_er=[],
         pass
 
     if e5:
+        cur_index = count_elements(vio_generation)
         attrib = {'id': 'e5'}
         element = vio_generation.makeelement('vioGenQuery', attrib)
         vio_generation.append(element)
 
         # adding an element to the seconditem node
         attrib_c = {}
-        ET.SubElement(vio_generation[count_elem], 'comparison', attrib_c)
-        vio_generation[count_elem][0].text = '(m1 == n2)'
+        ET.SubElement(vio_generation[cur_index], 'comparison', attrib_c)
+        vio_generation[cur_index][0].text = '(m1 == n2)'
 
         attrib_p = {}
-        ET.SubElement(vio_generation[count_elem], 'percentage', attrib_p)
-        vio_generation[count_elem][1].text = '2.0'
+        ET.SubElement(vio_generation[cur_index], 'percentage', attrib_p)
+        vio_generation[cur_index][1].text = '2.0'
 
     tree.write(xml_path)
 
 
-def run_xml():
-    pass
+def run_xml(xml_path):
+    run_path = '../BART-master/Bart_Engine/run.sh'
+    subprocess.run([run_path, xml_path], capture_output=True)
+    # subprocess.run(f"./BART-master/Bart_Engine/run.sh {xml_path}", shell=True, stdout=subprocess.PIPE,
+    #                stderr=subprocess.STDOUT)
 
 
 def connect(db='bart_employees_50'):
@@ -273,7 +281,25 @@ def main(clean_db_path='exp_data/employee_50_egtask_clean.csv',
     exe_stats(dirty_db, clean_db)
 
 
+def process(e1_er=[5,5],
+            xml_path='../BART-master/Bart_Engine/misc/resources/employees/employees-dbms-50-egtask.xml',
+            clean_db_path='exp_data/employee_50_egtask_clean.csv',
+            dirty_db_path='exp_data/employee_50_egtask_dirty.csv'):
+    """ this function is to
+    1. tune the parameters from xml file
+    2. run xml file with subprocess
+    3. load data locally"""
+    tune_parameters(e1_er=e1_er,
+                    xml_path=xml_path)
+    run_xml(xml_path)
+    clean_db, dirty_db = connect()
+    save_data(clean_db_path, clean_db)
+    save_data(dirty_db_path, dirty_db)
+    print(f'the length of clean dataset: {len(clean_db)}')
+    print(f'the length of dirty dataset: {len(dirty_db)}')
+
+
 if __name__ == '__main__':
-    tune_parameters(e1_er=[5, 5])
+    process()
     # main(clean_db_path='exp_data/employee_50_egtask_clean.csv',
     #      dirty_db_path='exp_data/employee_50_egtask_dirty.csv')

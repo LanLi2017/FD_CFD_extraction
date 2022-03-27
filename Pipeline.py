@@ -120,7 +120,6 @@ def error_analysis_e1(search_space=[(0, 5), (0, 5)], func='tane', k=20):
     # plt.show()
 
 
-
 if __name__ == '__main__':
     # error_analysis()
     # run()

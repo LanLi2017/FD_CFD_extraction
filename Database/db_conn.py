@@ -130,6 +130,7 @@ def tune_parameters(e2_er=[], e3_er=[], e4_er=[], e5_er=[],
 def run_xml(xml_path):
     run_path = 'BART-master/Bart_Engine/run.sh'
     subprocess.run([run_path, xml_path], capture_output=True)
+    # subprocess.run([/bash, run_path, xml_path], capture_output=True)
     # subprocess.run(f"./BART-master/Bart_Engine/run.sh {xml_path}", shell=True, stdout=subprocess.PIPE,
     #                stderr=subprocess.STDOUT)
 

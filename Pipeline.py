@@ -103,8 +103,8 @@ def error_analysis_e1(search_space=[(0, 5), (0, 5)], func='tane', k=20):
 
     # plot scatter
     ax = plt.axes(projection='3d')
-    ax.scatter(X, Y, ACC, cmap='viridis', label='accuracy')
-    ax.scatter(X, Y, F1, cmap='viridis', label='f1')
+    ax.scatter(X, Y, ACC, c=ACC, cmap='viridis', label='accuracy')
+    ax.scatter(X, Y, F1, c=F1, cmap='viridis', label='f1')
 
     ax.set_xlabel('Left Error Rate (%)')
     ax.set_ylabel('Right Error Rate (%)')

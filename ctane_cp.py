@@ -245,7 +245,7 @@ def partition_product(zup, xsp, ytp, tableT, dictpartitions):
     partitionXSP = dictpartitions[xsp]
     partitionYTP = dictpartitions[ytp]
     partitionZUP = []
-    print("x:%s partitionX:%s,y:%s partitionY:%s" % (xsp, partitionXSP, ytp, partitionYTP))
+    # print("x:%s partitionX:%s,y:%s partitionY:%s" % (xsp, partitionXSP, ytp, partitionYTP))
     for i in range(len(partitionXSP)):
         for t in partitionXSP[i]:
             tableT[t] = i
@@ -264,7 +264,6 @@ def partition_product(zup, xsp, ytp, tableT, dictpartitions):
             tableT[t] = 'NULL'
     dictpartitions[zup] = partitionZUP
     dictpartitions[zup] = partitionZUP
-    print(f'zup={zup},partitionX={partitionZUP}')
     return dictpartitions
 
 
@@ -311,6 +310,7 @@ def main(infile, k=30):
         temp = generate_next_level(L[l], tableT, dictpartitions, k_suppthreshold)
         L.append(temp)
         l = l + 1
+    return finallistofCFDs
 
 
 if __name__ == '__main__':

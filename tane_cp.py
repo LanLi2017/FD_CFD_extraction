@@ -39,7 +39,7 @@ def findCplus(x, dictCplus):  # this computes the Cplus of x as an intersection 
             del_x = tuple(list_x)
         # 计算的过程涉及了递归
         if del_x in dictCplus:
-            print(f'{del_x} in {dictCplus.keys()}')
+            # print(f'{del_x} in {dictCplus.keys()}')
             temp = dictCplus[del_x]
         else:
             temp = findCplus(del_x, dictCplus)  # compute C+(X\{A}) for each A at a time

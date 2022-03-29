@@ -16,7 +16,7 @@ from dpd_utils.utils_preparation import apply_preparations, \
     get_valid_preparations
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-CONF = ConfigFactory.parse_file(ROOT_DIR + '/resources/reference.conf')
+CONF = ConfigFactory.parse_file(ROOT_DIR + '/resources/reference_YL.conf')
 
 execute_similarities = True
 exit_after_similarities = False

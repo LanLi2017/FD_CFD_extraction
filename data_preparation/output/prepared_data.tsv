@@ -1,0 +1,865 @@
+id	name	address	city	phone	type	merged_values
+1	arni morton' of chicago	4SLCB	los angeles	3102461501	american	
+2	arni morton' of chicago	4SLCB	los angeles	3102461501	steakhouses	
+3	art' delicatessen	1VB	studio city	8187621221	american	
+4	art' deli	1VB	studio city	8187621221	delis	
+5	hotel bel-air	7SCR	bel air	3104721211	californian	
+6	bel-air hotel	7SCR	bel air	3104721211	californian	
+7	cafe bizou	1VB	sherman oaks	8187883536	french	
+8	cafe bizou	1VB	sherman oaks	8187883536	french bistro	
+9	campanil	6SLBA	los angeles	2139381447	american	
+10	campanil	6SLBA	los angeles	2139381447	californian	
+11	chinoi on main	2MS	santa monica	3103929025	french	
+12	chinoi on main	2MS	santa monica	3103929025	pacific new wave	
+13	citru	6MA	los angeles	2138570034	californian	
+14	citru	6MA	los angeles	2138570034	californian	
+15	fenix	8SBW	hollywood	2138486677	american	
+16	fenix at the argyl	8SB	w. hollywood	2138486677	french (new)	
+17	granita	2WMR	malibu	3104560488	californian	
+18	granita	2WMR	malibu	3104560488	californian	
+19	grill on the allei	9DW	los angeles	3102760615	american	
+20	grill  the	9DW	beverly hills	3102760615	american (traditional)	
+21	restaur katsu	1NHA	los angeles	2136651891	asian	
+22	katsu	1HA	los feliz	2136651891	japanese	
+23	l'orangeri	9NLCB	los angeles	3106529770	french	
+24	l'orangeri	9NLCB	w. hollywood	3106529770	french (classic)	
+25	le chardonnai	8MA	los angeles	2136558880	french	
+26	le chardonnai (lo angeles)	8MA	los angeles	2136558880	french bistro	
+27	locanda veneta	3S	los angeles	3102741893	italian	
+28	locanda veneta	8WTS	los angeles	3102741893	italian	
+29	matsuhisa	1NLCB	beverly hills	3106599639	asian	
+30	matsuhisa	1NLCB	beverly hills	3106599639	seafood	
+31	the palm	9SMB	los angeles	3105508811	american	
+32	palm  the (lo angeles)	9SMB	w. hollywood	3105508811	steakhouses	
+33	patina	5MA	los angeles	2134671108	californian	
+34	patina	5MA	los angeles	2134671108	californian	
+35	philippe' the origin	1NAS	los angeles	2136283781	american	
+36	philipp the origin	1NAS	chinatown	2136283781	cafeterias	
+37	pinot bistro	1VB	los angeles	8189900500	french	
+38	pinot bistro	1VB	studio city	8189900500	french bistro	
+39	rex il ristorant	6SOS	los angeles	2136272300	italian	
+40	rex il ristorant	6SOS	los angeles	2136272300	nuova cucina italian	
+41	spago	1HA	los angeles	3106524025	californian	
+42	spago (lo angeles)	8SB	w. hollywood	3106524025	californian	
+43	valentino	3PB	santa monica	3108294313	italian	
+44	valentino	3PB	santa monica	3108294313	italian	
+45	yujean kang' gourmet chines cuisin	6NRA	los angeles	8185850855	asian	
+46	yujean kang'	6NRA	pasadena	8185850855	chinese	
+47	21 club	2W5S	new york	2125827200	american	
+48	21 club	2W5S	new york city	2125827200	american (new)	
+49	aquavit	1W5S	new york	2123077311	continental	
+50	aquavit	1W5S	new york city	2123077311	scandinavian	
+51	aureol	3E6S	new york	212 3191660	american	
+52	aureol	3E6S	new york city	2123191660	american (new)	
+53	cafe lalo	2W8S	new york	2124966031	coffee bar	
+54	cafe lalo	2W8S	new york city	2124966031	coffeehouses	
+55	cafe de artist	1W6S	new york	2128773500	continental	
+56	cafe de artist	1W6S	new york city	2128773500	french (classic)	
+57	carmine'	2BB9A9S	new york	2123622200	italian	
+58	carmine'	2B	new york city	2123622200	italian	
+59	carnegi deli	87AB5A5S	new york	2127572245	delicatessen	
+60	carnegi deli	8SA	new york city	2127572245	delis	
+61	chanterel	2HSNHS	new york	2129666960	american	
+62	chanterel	2HS	new york city	2129666960	french (new)	
+63	daniel	2E7S	new york	2122880033	french	
+64	daniel	2E7S	new york city	2122880033	french (new)	
+65	dawat	2E5S	new york	2123557555	asian	
+66	dawat	2E5S	new york city	2123557555	indian	
+67	felidia	2E5S	new york	2127581479	italian	
+68	felidia	2E5S	new york city	2127581479	italian	
+69	four season grill room	9E5S	new york	2127549494	american	
+70	four season	9E5S	new york city	2127549494	american (new)	
+71	gotham bar & grill	1E1S	new york	2126204020	american	
+72	gotham bar & grill	1E1S	new york city	2126204020	american (new)	
+73	gramerci tavern	4E2SBPASAB	new york	2124770777	american	
+74	gramerci tavern	4E2S	new york city	2124770777	american (new)	
+75	island spice	4W4S	new york	2127651737	tel caribbean	
+76	island spice	4W4S	new york city	2127651737	caribbean	
+77	jo jo	1E6S	new york	2122235656	american	
+78	jo jo	1E6S	new york city	2122235656	french bistro	
+79	la caravel	3W5S	new york	2125864252	french	
+80	la caravel	3W5S	new york city	2125864252	french (classic)	
+81	la cote basqu	6W5SB5A6A	new york	2126886525	french	
+82	la cote basqu	6W5S	new york city	2126886525	french (classic)	
+83	le bernardin	1W5S	new york	2124891515	french	
+84	le bernardin	1W5S	new york city	2124891515	seafood	
+85	le celebrit	1CPS	new york	2124845113	french	
+86	le celebrit	1W5S	new york city	2124845113	french (classic)	
+87	lespinass	2E5S	new york	2123396719	american	
+88	lespinass (new york city)	2E5S	new york city	2123396719	asian	
+89	lutec	2E5S	new york	2127522225	french	
+90	lutec	2E5S	new york city	2127522225	french (classic)	
+91	manhattan ocean club	5W5S	new york	212 3717777	seafood	
+92	manhattan ocean club	5W5S	new york city	2123717777	seafood	
+93	march	4E5S	new york	2127546272	american	
+94	march	4E5S	new york city	2127546272	american (new)	
+95	mesa grill	15AB1A1S	new york	2128077400	american	
+96	mesa grill	1FA	new york city	2128077400	southwestern	
+97	mi cocina	5JSOHS	new york	2126278273	mexican	
+98	mi cocina	5JS	new york city	2126278273	mexican	
+99	montrachet	2WBBWAWS	new york	212 2192777	french	
+100	montrachet	2WB	new york city	2122192777	french bistro	
+101	oceana	5E5S	new york	2127595941	seafood	
+102	oceana	5E5S	new york city	2127595941	seafood	
+103	park avenu cafe	1E6S	new york	2126441900	american	
+104	park avenu cafe (new york city)	1E6S	new york city	2126441900	american (new)	
+105	petrossian	1W5S	new york	2122452214	french	
+106	petrossian	1W5S	new york city	2122452214	russian	
+107	picholin	3W6S	new york	2127248585	mediterranean	
+108	picholin	3W6S	new york city	2127248585	mediterranean	
+109	pisc	9AAA6S	new york	2122606660	seafood	
+110	pisc	9AA	new york city	2122606660	seafood	
+111	rainbow room	3RP	new york	2126325000	or 212/632-5100 american	
+112	rainbow room	3RP	new york city	2126325000	american (new)	
+113	river cafe	1WSATER	brooklyn	7185225200	american	
+114	river cafe	1WS	brooklyn	7185225200	american (new)	
+115	san domenico	2CPS	new york	2122655959	italian	
+116	san domenico	2CPS	new york city	2122655959	italian	
+117	second avenu deli	12AA1S	new york	2126770606	delicatessen	
+118	second avenu deli	1SA	new york city	2126770606	delis	
+119	seryna	1E5S	new york	2129809393	asian	
+120	seryna	1E5S	new york city	2129809393	japanese	
+121	shun lee west	4W6S	new york	2123718844	asian	
+122	shun lee palac	1E5S	new york city	2123718844	chinese	
+123	sign of the dove	13AA6S	new york	2128618080	american	
+124	sign of the dove	1TA	new york city	2128618080	american (new)	
+125	smith & wollenski	2E4S	new york	2127531530	american	
+126	smith & wollenski	7TA	new york city	2127531530	steakhouses	
+127	tavern on the green	ICPA6S	new york	2128733200	american	
+128	tavern on the green	CPW	new york city	2128733200	american (new)	
+129	uncl nick'	79AB5A5S	new york	2123151726	mediterranean	
+130	uncl nick'	7NA	new york city	2122457992	greek	
+131	union squar cafe	2E1S	new york	2122434020	american	
+132	union squar cafe	2E1S	new york city	2122434020	american (new)	
+133	virgil'	1W4S	new york	212 9219494	american	
+134	virgil' real bbq	1W4S	new york city	2129219494	bbq	
+135	chin'	3LVBS	las vegas	7027338899	asian	
+136	chin'	3LVBS	las vegas	7027338899	chinese	
+137	coyot cafe	3LVBS	las vegas	7028917349	southwestern	
+138	coyot cafe (la vegas)	3LVBS	las vegas	7028917349	southwestern	
+139	le montrachet	3WPR	las vegas	7027325111	continental	
+140	le montrachet bistro	3PR	las vegas	7027325651	french bistro	
+141	palac court	3LVBS	las vegas	7027317547	continental	
+142	palac court	3LVBS	las vegas	7027317110	french (new)	
+143	second street grill	2EFS	las vegas	7023853232	seafood	
+144	second street grill	2EFS	las vegas	7023856277	pacific rim	
+145	steak hous	2LVBS	las vegas	7027340410	steak houses	
+146	steak hous  the	2LVBS	las vegas	7027340410	steakhouses	
+147	tillerman	2EFR	las vegas	7027314036	seafood	
+148	tillerman  the	2EFR	las vegas	7027314036	steakhouses	
+149	abruzzi	2PRPBSC	atlanta	4042618186	italian	
+150	abruzzi	2PRN	atlanta	4042618186	italian	
+151	bacchanalia	3PRNPR	atlanta	4043650410	international	
+152	bacchanalia	3PR	atlanta	4043650410	californian	
+153	bone'	3PR	atlanta	4042372663	american	
+154	bone' restaur	3PRN	atlanta	4042372663	steakhouses	
+155	brasseri le coze	3PRLSMNNM	atlanta	4042661440	french	
+156	brasseri le coze	3PR	atlanta	4042661440	french bistro	
+157	buckhead diner	3PR	atlanta	4042623336	american	
+158	buckhead diner	3PR	atlanta	4042623336	american (new)	
+159	ciboulett	1PA	atlanta	4048747600	french	
+160	ciboulett restaur	1PA	atlanta	4048747600	french (new)	
+161	delect	1MMS	atlanta	4046812909	american	
+162	delect	1MMS	atlanta	4046812909	cafeterias	
+163	georgia grill	2PRPSSC	atlanta	4043523517	american	
+164	georgia grill	2PR	atlanta	4043523517	southwestern	
+165	hedgeros height inn	4EPFR	atlanta	4042337673	international	
+166	hedgeros height inn  the	4EPFRN	atlanta	4042337673	continental	
+167	heera of india	5PARSM	atlanta	4048764408	asian	
+168	heera of india	5PA	atlanta	4048764408	indian	
+169	indigo coastal grill	1NHA	atlanta	4048760676	caribbean	
+170	indigo coastal grill	1NHA	atlanta	4048760676	eclectic	
+171	la grotta	2PRPHC	atlanta	4042311368	italian	
+172	la grotta	2PRN	atlanta	4042311368	italian	
+173	mari mac' tea room	2PDLA	atlanta	4048761800	southern	
+174	mari mac' tea room	2PDLA	atlanta	4048761800	southern/soul	
+175	nikolai' roof	2CSAHS	atlanta	4042216362	continental	
+176	nikolai' roof	2CS	atlanta	4042216362	continental	
+177	pano' and paul'	1WPFR	atlanta	4042613662	international	
+178	pano' & paul'	1WPFR	atlanta	4042613662	american (new)	
+179	cafe  ritz-carlton  buckhead	3PR	atlanta	4042372700	ext 6108 international	
+180	ritz-carlton cafe (buckhead)	3PRN	atlanta	4042372700	american (new)	
+181	dine room  ritz-carlton  buckhead	3PR	atlanta	4042372700	international	
+182	ritz-carlton dine room (buckhead)	3PRN	atlanta	4042372700	american (new)	
+183	restaur  ritz-carlton  atlanta	1PS	atlanta	4046590400	continental	
+184	ritz-carlton restaur	1PS	atlanta	4046590400	french (classic)	
+185	toulous	BPR	atlanta	4043519533	french	
+186	toulous	2PR	atlanta	4043519533	french (new)	
+187	veni vidi vici	41S	atlanta	4048758424	italian	
+188	veni vidi vici	41S	atlanta	4048758424	italian	
+189	alain rondelli	1CS	san francisco	4153870408	french	
+190	alain rondelli	1CS	san francisco	4153870408	french (new)	
+191	aqua	2CS	san francisco	4159569662	seafood	
+192	aqua	2CS	san francisco	4159569662	american (new)	
+193	boulevard	1MS	san francisco	4155436084	american	
+194	boulevard	1MS	san francisco	4155436084	american (new)	
+195	cafe claud	7CL	san francisco	4153923505	french	
+196	cafe claud	7CL	san francisco	4153923505	french bistro	
+197	campton place	3SS	san francisco	4159555555	american	
+198	campton place	3SS	san francisco	4159555555	american (new)	
+199	chez michel	8N	san francisco	4157757036	french	
+200	chez michel	8NPS	san francisco	4157757036	californian	
+201	fleur de ly	7SS	san francisco	4156737779	french	
+202	fleur de ly	7SS	san francisco	4156737779	french (new)	
+203	fringal	54S	san francisco	4155430573	french	
+204	fringal	5FS	san francisco	4155430573	french bistro	
+205	hawthorn lane	2HS	san francisco	4157779779	american	
+206	hawthorn lane	2HS	san francisco	4157779779	californian	
+207	khan toke thai hous	5GB	san francisco	4156686654	asian	
+208	khan toke thai hous	5GB	san francisco	4156686654	thai	
+209	la foli	2PS	san francisco	4157765577	french	
+210	la foli	2PS	san francisco	4157765577	french (new)	
+211	lulu	8FS	san francisco	4154955775	mediterranean	
+212	lulu restaurant-bis-caf	8FS	san francisco	4154955775	mediterranean	
+213	masa'	6BS	san francisco	4159897154	french	
+214	masa'	6BS	san francisco	4159897154	french (new)	
+215	mifun japan center  kintetsu build	1PS	san francisco	4159220337	asian	
+216	mifun	1PS	san francisco	4159220337	japanese	
+217	plumpjack cafe	3FS	san francisco	4155634755	mediterranean	
+218	plumpjack cafe	3FS	san francisco	4155634755	american (new)	
+219	postrio	5PS	san francisco	4157767825	american	
+220	postrio	5PS	san francisco	4157767825	californian	
+221	ritz-carlton restaur and dine room	6SS	san francisco	4152967465	american	
+222	ritz-carlton dine room (san francisco)	6SS	san francisco	4152967465	french (new)	
+223	rose pistola	5CA	san francisco	4153990499	italian	
+224	rose pistola	5CA	san francisco	4153990499	italian	
+225	adriano' ristorant	2BGC	los angeles	3104759807	italian	
+226	barnei greengrass	9WB	beverly hills	3107775877	american	
+227	beaurivag	2PCH	malibu	3104565733	french	
+228	bistro garden	1NCD	los angeles	3105503900	californian	
+229	border grill	4S	los angeles	3104511655	mexican	
+230	broadwai deli	3SP	santa monica	3104510616	american	
+231	ca'brea	3SLBA	los angeles	2139382863	italian	
+232	ca'del sol	4CB	los angeles	8189854669	italian	
+233	cafe pinot	7WFS	los angeles	2132396500	californian	
+234	california pizza kitchen	2SBD	los angeles	3102751101	californian	
+235	canter'	4NFA	los angeles	2136512030	american	
+236	cava	3S	los angeles	2136588898	mediterranean	
+237	cha cha cha	6NVA	los angeles	2136647723	caribbean	
+238	chan dara	3NLB	los angeles	2134671052	asian	
+239	clearwat cafe	1WCB	los angeles	8183560959	health food	
+240	dine room	9WB	los angeles	3102755200	californian	
+241	dive!	1SMB	los angeles	310788	dive american	
+242	drago	2WB	santa monica	3108281585	italian	
+243	drai'	7NLCB	los angeles	3103588585	french	
+244	dynasti room	9HA	los angeles	3102088765	continental	
+245	eclips	8MA	los angeles	3107245959	californian	
+246	ed debevic'	1NLC	los angeles	3106591952	american	
+247	el cholo	1SWA	los angeles	2137342773	mexican	
+248	gilliland'	2MS	santa monica	3103923901	american	
+249	gladstone'	4F1PCHASB	pacific palisades	3104543474	american	
+250	hard rock cafe	8BB	los angeles	3102767605	american	
+251	harry' bar & american grill	2AOTS	los angeles	3102772333	italian	
+252	il fornaio cucina italiana	3NBD	los angeles	3105508330	italian	
+253	jack sprat' grill	1WPB	los angeles	3108376662	health food	
+254	jackson' farm	4NBD	los angeles	3102735578	californian	
+255	jimmy's	201 moreno dr.	los angeles	310/552-2394	continental	
+256	joss	9SB	los angeles	3102761886	asian	
+257	le coloni	8BB	los angeles	3102890660	asian	
+258	le dome	8SB	los angeles	3106596919	french	
+259	louise' trattoria	4LFB	los angeles	2136670777	italian	
+260	mon kee seafood restaur	6NSS	los angeles	2136286717	asian	
+261	morton'	8MA	los angeles	3102765205	american	
+262	nate 'n' al'	4NBD	los angeles	3102740101	american	
+263	nicola	6SFS	los angeles	2134850927	american	
+264	ocean avenu	1OA	santa monica	3103945669	american	
+265	orlean	1NB	los angeles	3104794187	cajun	
+266	pacif dine car	6S	los angeles	2134836000	american	
+267	paty'	1RD	toluca lake	8187619126	american	
+268	pinot hollywood	1NGS	los angeles	2134618800	californian	
+269	posto	1VB	sherman oaks	8187844400	italian	
+270	prego	3NCD	los angeles	3102777346	italian	
+271	rj' the rib joint	2NBD	los angeles	3102747427	american	
+272	remi	3SP	santa monica	3103936545	italian	
+273	restaur horikawa	1SSPS	los angeles	2136809355	asian	
+274	roscoe' hous of chicken 'n' waffl	1NGS	los angeles	2134669329	american	
+275	schatzi on main	3MS	los angeles	3103994800	continental	
+276	sofi	3S	los angeles	2136510346	mediterranean	
+277	swinger	8BB	los angeles	2136535858	american	
+278	tavola calda	7MA	los angeles	2136586340	italian	
+279	the mandarin	4NCD	los angeles	3108590926	asian	
+280	tommi tang'	7MA	los angeles	2139375733	asian	
+281	tra di noi	3CCR	los angeles	3104560169	italian	
+282	trader vic'	9WB	los angeles	3102766345	asian	
+283	vida	1NHA	los feliz	2136604446	american	
+284	west beach cafe	6NVB	los angeles	3108235396	american	
+285	20 mott	2MSBBAPS	new york	2129640380	asian	
+286	9 jone street	9JS	new york	2129891220	american	
+287	adrienn	75AA5S	new york	2129033918	french	
+288	agrotikon	3E1SB1A2A	new york	2124732602	mediterranean	
+289	aja	9BA2S	new york	2124738388	american	
+290	alamo	3E4S	new york	212 7590590	mexican	
+291	alley' end	3W1S	new york	2126278899	american	
+292	ambassador grill	1UNPA4S	new york	2127025014	american	
+293	american place	2PAA3S	new york	2126842122	american	
+294	anch vivolo	2E5SB2A3A	new york	2123080112	italian	
+295	arizona	22E6S	new york	2128380440	american	
+296	arturo'	1WHSOTS	new york	2126773820	italian	
+297	au mandarin	2VSWFC	new york	2123850313	asian	
+298	bar anis	13AB6A6S	new york	2123551112	mediterranean	
+299	barbetta	3W4S	new york	2122469171	italian	
+300	ben benson'	1W5S	new york	2125818888	american	
+301	big cup	28AB2A2S	new york	2122060059	coffee bar	
+302	billy'	91AB5A5S	new york	2127531870	american	
+303	boca chica	11AN1S	new york	2124730108	latin american	
+304	bolo	2E2S	new york	2122282200	mediterranean	
+305	boonthai	12AB7A7S	new york	2122498484	asian	
+306	bouterin	4E5SO1A	new york	2127580323	french	
+307	brother bar-b-q	2VSACS	new york	2127272775	american	
+308	bruno	2E5S	new york	2126884190	italian	
+309	bryant park grill  roof restaur and bp cafe	2W4SB5A6A	new york	2128406500	american	
+310	c3	1WPNWS	new york	2122541200	american	
+311	ct	1E2SBPASALA	new york	2129958500	french	
+312	cafe bianco	12AB7A7S	new york	2129882655	coffee bar	
+313	cafe botanica	1CPS	new york	2124845120	french	
+314	cafe la fortuna	6W7S	new york	2127245846	coffee bar	
+315	cafe luxembourg	2W7S	new york	2128737411	french	
+316	cafe pierr	2E6S	new york	2129408185	french	
+317	cafe centro	2PAB4SAVA	new york	2128181222	french	
+318	cafe fe	2W4SACS	new york	2129247653	mediterranean	
+319	caff dant	8MSBHABS	new york	2129825275	coffee bar	
+320	caff dell'artista	4GA	new york	2126454431	coffee bar	
+321	caff lure	1SSBHABS	new york	2124732642	french	
+322	caff reggio	1MSB3ABS	new york	2124759557	coffee bar	
+323	caff roma	3BSAM	new york	2122268413	coffee bar	
+324	caff vivaldi	3JSABS	new york	2126917538	coffee bar	
+325	caff bondi ristorant	7W2S	new york	2126918136	italian	
+326	capsouto frere	4WSNWS	new york	2129664900	french	
+327	captain' tabl	82AA4S	new york	2126979538	seafood	
+328	casa la femm	1WSBHAPS	new york	2125050005	middle eastern	
+329	cendrillon asian grill & marimba bar	4MSBBAGS	new york	2123439012	asian	
+330	chez jacquelin	7MSBWHABS	new york	2125050727	french	
+331	chiam	1E4S	new york	2123712323	asian	
+332	china grill	6W5S	new york	2123337788	american	
+333	cite	1W5S	new york	2129567100	french	
+334	coco pazzo	2E7S	new york	2127940205	italian	
+335	columbu bakeri	5S	new york	2124210334	coffee bar	
+336	corrado cafe	13AB6A6S	new york	2127535100	coffee bar	
+337	cupcak cafe	59AA3S	new york	2124651530	coffee bar	
+338	da nico	1MSBGABS	new york	2123431212	italian	
+339	dean & deluca	1PS	new york	2122548776	coffee bar	
+340	diva	3WBNGS	new york	2129419024	italian	
+341	dix et sept	1W1S	new york	2126458023	french	
+342	dock	63AA4S	new york	212 9868080	seafood	
+343	duan park cafe	1DSBWBAHS	new york	2127325555	american	
+344	el teddy'	2WBBFAWS	new york	2129417070	mexican	
+345	emily'	15AA1S	new york	2129961212	american	
+346	empir korea	6E3S	new york	2127251333	asian	
+347	ernie'	2BB7A7S	new york	2124961588	american	
+348	evergreen cafe	11AA6S	new york	2127443266	asian	
+349	f. ill pont ristorant	3DSNWS	new york	2122264621	italian	
+350	felix	3WBAGS	new york	2124310021	french	
+351	ferrier	2E6S	new york	2127729000	french	
+352	fifti seven fifti seven	5E5S	new york	2127585757	american	
+353	film center cafe	69AB4A4S	new york	212 2622525	american	
+354	fiorello' roman cafe	1BB6A6S	new york	2125955330	italian	
+355	firehous	5CAB8A8S	new york	2125953139	american	
+356	first	81AB5A6S	new york	2126743823	american	
+357	fishin eddi	7W7S	new york	2128743474	seafood	
+358	fleur de jour	3E6S	new york	2123552020	coffee bar	
+359	flower	2W1SB5A6A	new york	2126918888	american	
+360	follonico	6W2S	new york	2126916359	italian	
+361	fraunc tavern	5PSABS	new york	2122690144	american	
+362	french roast	46AA1S	new york	2125332233	french	
+363	french roast cafe	2BA8S	new york	2127991533	coffee bar	
+364	frico bar	4W4SO9A	new york	2125647272	italian	
+365	fujiyama mama	4CAB8A8S	new york	2127691144	asian	
+366	gabriela'	6AAA9S	new york	2129610574	mexican	
+367	gallagher'	2W5S	new york	2122455336	american	
+368	gianni'	1FS	new york	2126087300	seafood	
+369	giraf	2E5SB2A3A	new york	2127523054	italian	
+370	global	392AB5A6S	new york	2124778427	american	
+371	golden unicorn	1EBACS	new york	212 9410911	asian	
+372	grand ticino	2TSBW3ABS	new york	2127775922	italian	
+373	halcyon	1W5SITRRH	new york	2124688888	american	
+374	hard rock cafe	2W5S	new york	2124896565	american	
+375	hi-lif restaur and loung	11AA7S	new york	2122493600	american	
+376	home	2CSBBAW4S	new york	2122439579	american	
+377	hudson river club	4WFC	new york	2127861500	american	
+378	i trulli	1E2SBLAPA	new york	2124817372	italian	
+379	il cortil	1MSBCAHS	new york	2122266060	italian	
+380	il nido	2E5S	new york	2127538450	italian	
+381	inca grill	4BSNWB	new york	2129663371	latin american	
+382	indochin	4LSB4SAAP	new york	2125055111	asian	
+383	internet cafe	8E3SB1A2A	new york	212 6140747	coffee bar	
+384	ipanema	1W4S	new york	2127305848	latin american	
+385	jean lafitt	6W5S	new york	2127512323	french	
+386	jewel of india	1W4S	new york	2128695544	asian	
+387	jimmi sung'	2E4SB2A3A	new york	2126825678	asian	
+388	joe allen	3W4S	new york	2125816464	american	
+389	judson grill	1W5S	new york	2125825252	american	
+390	l'absinth	2E6S	new york	2127944950	french	
+391	l'auberg	11AB6A6S	new york	2122888791	middle eastern	
+392	l'auberg du midi	3W4SBW1ABS	new york	2122424705	french	
+393	l'udo	4LSNAP	new york	2123880978	french	
+394	la reserv	4W4S	new york	2122472993	french	
+395	lanza restaur	11AB1A1S	new york	2126747014	italian	
+396	lattanzi ristorant	3W4S	new york	2123150980	italian	
+397	layla	2WBAFS	new york	2124310700	middle eastern	
+398	le chantilli	1E5S	new york	2127512931	french	
+399	le coloni	1E5S	new york	212 7520808	asian	
+400	le gamin	5MSBHAPS	new york	2122544678	coffee bar	
+401	le jardin	2CPNSS	new york	2123439599	french	
+402	le madri	1W1S	new york	2127278022	italian	
+403	le marai	1W4S	new york	2128690900	american	
+404	le perigord	4E5S	new york	2127556244	french	
+405	le select	5CAB8A8S	new york	2128751993	american	
+406	le hall	4PASB2A2S	new york	2126794111	french	
+407	lincoln tavern	5W6S	new york	2127218271	american	
+408	lola	3W2SB5A6A	new york	2126756700	american	
+409	lucki strike	5GSBWSAWB	new york	2129410479	or 212/941-0772 american	
+410	mad fish	2BB7A7S	new york	2127870202	seafood	
+411	main street	4CAB8A8S	new york	2128735025	american	
+412	mangia e bevi	89AA5S	new york	2129563976	italian	
+413	manhattan cafe	11AB6A6S	new york	2128886556	american	
+414	manila garden	3E1SB1A2A	new york	2127776314	asian	
+415	marichu	3E4SB1A2A	new york	2123701866	french	
+416	marquet patisseri	1E1SB5AAUP	new york	2122299313	coffee bar	
+417	match	1MSBHAPS	new york	2129069173	american	
+418	matthew'	13AA6S	new york	2128384343	american	
+419	maval palac	4E2S	new york	2126795535	asian	
+420	milan cafe and coffe bar	1W2S	new york	2128071801	coffee bar	
+421	monkei bar	6E5S	new york	2128382600	american	
+422	montien	11AB6A6S	new york	2124214433	asian	
+423	morton'	55AA4S	new york	2129723315	american	
+424	motown cafe	1W5SN6A	new york	2125818030	american	
+425	new york kom tang soot bul hous	3W3S	new york	212 9478482	asian	
+426	new york noodletown	21BABS	new york	2123490923	asian	
+427	newsbar	2W1S	new york	2122553996	coffee bar	
+428	odeon	1WBATS	new york	2122330507	american	
+429	orso	3W4S	new york	2124897212	italian	
+430	osteria al droge	1W4S	new york	2129443643	italian	
+431	otab	6E5S	new york	2122237575	asian	
+432	pacifica	1LSBCAHS	new york	2129414168	asian	
+433	palio	1W5S	new york	2122454850	italian	
+434	pamir	11AA5S	new york	2126449258	middle eastern	
+435	parioli romanissimo	2E8S	new york	2122882391	italian	
+436	patria	2PASA2S	new york	2127776211	latin american	
+437	peacock allei	3PAB4A5S	new york	2128724895	french	
+438	pen & pencil	2E4S	new york	2126828660	american	
+439	penang soho	1SSBGAMS	new york	2122748883	asian	
+440	persepoli	12AB7A7S	new york	2125351100	middle eastern	
+441	planet hollywood	1W5S	new york	2123337827	american	
+442	pomair	3W4SO9A	new york	212 9563055	latin american	
+443	popov cafe	5AAB8A8S	new york	2125958555	american	
+444	post hous	2E6S	new york	2129352888	american	
+445	rain	1W8S	new york	2125010776	asian	
+446	red tulip	4E7S	new york	2127344893	eastern european	
+447	remi	1W5S	new york	2125814242	italian	
+448	republ	3USWB1A1S	new york	2126277172	asian	
+449	roettel a. g	1E7SB1AAAA	new york	2126744140	continental	
+450	rosa mexicano	11AA5S	new york	2127537407	mexican	
+451	ruth' chri	1W5S	new york	2122459600	american	
+452	s.p.q.r	1MSBHAGS	new york	2129253120	italian	
+453	sal anthony'	5IP	new york	2129829030	italian	
+454	sammy' roumanian steak hous	1CSADS	new york	2126730330	east european	
+455	san pietro	1E5S	new york	2127539015	italian	
+456	sant ambroeu	1MAB7A7S	new york	2125702211	coffee bar	
+457	sarabeth' kitchen	4AAB8A8S	new york	2124966280	american	
+458	sea grill	1W4S	new york	2123327610	seafood	
+459	serendip	32E6S	new york	2128383531	american	
+460	seventh regiment mess and bar	6PAA6S	new york	2127444107	american	
+461	sfuzzi	5W6S	new york	2128733700	american	
+462	shaan	5W4S	new york	212 9778400	asian	
+463	sofia fabul pizza	1MAN7S	new york	2127342676	italian	
+464	spring street natur restaur & bar	6SSALS	new york	2129660290	american	
+465	stage deli	87AB5A5S	new york	2122457850	delicatessen	
+466	stingrai	4AAB8A8S	new york	2125017515	seafood	
+467	sweet'n'tart cafe	7MSACS	new york	2123348088	asian	
+468	t salon	1MSAPS	new york	2129253700	coffee bar	
+469	tang pavillion	6W5S	new york	2129566888	asian	
+470	tapika	98AA5S	new york	212 3973737	american	
+471	teresa'	11AB6A7S	new york	2122280604	east european	
+472	terrac	4W1SBAAMA	new york	2126669490	continental	
+473	the coffe pot	39AA4S	new york	2122653566	coffee bar	
+474	the savannah club	2BA8S	new york	2124961066	american	
+475	trattoria dell'art	97AB5A5S	new york	2122459800	italian	
+476	triangolo	3E8S	new york	2124724488	italian	
+477	tribeca grill	3GSNFS	new york	2129413900	american	
+478	troi jean	1E7SBLA3A	new york	2129884858	coffee bar	
+479	tse yang	3E5S	new york	2126885447	asian	
+480	turkish kitchen	33AB2A2S	new york	2126791810	middle eastern	
+481	two two two	2W7S	new york	2127990400	american	
+482	veniero' pasticceria	3E1SN1A	new york	2126747264	coffee bar	
+483	verbena	5IPA1S	new york	2122605454	american	
+484	victor' cafe	52W5S	new york	2125867714	latin american	
+485	vinc & eddie'	7W6S	new york	2127210068	american	
+486	vong	2E5S	new york	2124869592	american	
+487	water club	5E3S	new york	2126833333	american	
+488	west	6SS4W6S	new york	2122466363	american	
+489	xunta	11AB1A1S	new york	2126140620	mediterranean	
+490	zen palat	3USEA1S	new york	2126149291	and 212/614-9345 asian	
+491	zoe	9PSBBAMS	new york	2129666722	american	
+492	abbei	1PDLA	atlanta	4048768532	international	
+493	aleck' barbecu heaven	7MLKJD	atlanta	4045252062	barbecue	
+494	annie' thai castl	3RR	atlanta	4042649546	asian	
+495	anthoni	3PRJSOPR	atlanta	4042627379	american	
+496	atlanta fish market	2PR	atlanta	4042623165	american	
+497	beesley' of buckhead	2EPFR	atlanta	4042641334	continental	
+498	bertolini'	3PRPP	atlanta	4042332333	italian	
+499	bistango	1PS	atlanta	4047240901	mediterranean	
+500	cafe renaiss	7JCBN	atlanta	7704410291	american	
+501	camille'	1NHA	atlanta	4048727203	italian	
+502	cassi	3PRGH	atlanta	4043658100	mediterranean	
+503	citi grill	5HP	atlanta	4045242489	international	
+504	coco loco	4BCMOTSMB	atlanta	4043640212	caribbean	
+505	colonnad restaur	1CBR	atlanta	4048745642	southern	
+506	dante' down the hatch  buckhead	3PR	atlanta	4042661600	continental	
+507	dante' down the hatch	UUMUA	atlanta	4045771800	continental	
+508	fat matt' rib shack	1PANCBR	atlanta	4046071622	barbecue	
+509	french quarter food shop	9PSA8S	atlanta	4048752489	southern	
+510	holt bros. bar-b-q	6JCBABHN	atlanta	7702423984	barbecue	
+511	horseradish grill	4PFR	atlanta	4042557277	southern	
+512	hsu' gourmet	1PCAAIB	atlanta	4046592788	asian	
+513	imperi fez	2PRPBC	atlanta	4043510870	mediterranean	
+514	kamogawa	3PRGH	atlanta	4048410314	asian	
+515	la grotta at ravinia dunwoodi rd.	HIPARD	atlanta	7703959925	italian	
+516	littl szechuan	CBHNPD	atlanta	7704510192	asian	
+517	lowcountri barbecu	6RRSSPSS	atlanta	4042555160	barbecue	
+518	luna si	1PR	atlanta	4043555993	continental	
+519	mambo restaurant cubano	1NHA	atlanta	4048742626	caribbean	
+520	mckinnon' louisian	3MD	atlanta	4042371313	southern	
+521	mi spia dunwoodi rd.	PPAFPMD	atlanta	7703931333	italian	
+522	nickiemoto's: a sushi bar	2BAEVS	atlanta	4048420334	fusion	
+523	palisad	1PR	atlanta	4043506755	continental	
+524	pleasant peasant	5PSALA	atlanta	4048743223	american	
+525	pricci	5PR	atlanta	4042372941	italian	
+526	r.j.' uptown kitchen & wine bar	8NHA	atlanta	4048757775	american	
+527	rib ranch	2IA	atlanta	4042337644	barbecue	
+528	sa tsu ki	3BH	atlanta	4043255285	asian	
+529	sato sushi and thai	6PPN	atlanta	7704490033	asian	
+530	south citi kitchen	1CA	atlanta	4048737358	southern	
+531	south of franc	2CBR	atlanta	4043256963	french	
+532	stringer' fish camp and oyster bar	3SRC	atlanta	7704587145	southern	
+533	sundown cafe	2CBR	atlanta	4043211118	american	
+534	tast of new orlean	8WPS	atlanta	4048745535	southern	
+535	tomtom	3PR	atlanta	4042641163	continental	
+536	antonio'	3WF	las vegas	7022527737	italian	
+537	bally' big kitchen	3LVBS	las vegas	7027394111	buffets	
+538	bamboo garden	4FR	las vegas	7028713262	asian	
+539	battista' hole in the wall	4ASAFR	las vegas	7027321424	italian	
+540	bertolini'	3LVBS	las vegas	7027354663	italian	
+541	binion' coffe shop	1FS	las vegas	7023821600	coffee shops/diners	
+542	bistro	3LVBS	las vegas	7027917111	continental	
+543	broiler	4BH	las vegas	7024327777	american	
+544	bugsy' diner	3LVBS	las vegas	7027333111	coffee shops/diners	
+545	cafe michel	1EFR	las vegas	7027358686	american	
+546	cafe roma	3LVBS	las vegas	7027317547	coffee shops/diners	
+547	capozzoli'	3SMP	las vegas	7027315311	italian	
+548	carniv world	3WFR	las vegas	7022527777	buffets	
+549	center stage plaza hotel	1MS	las vegas	7023862512	american	
+550	circu circu	2LVBS	las vegas	7027340410	buffets	
+551	empress court	3LVBS	las vegas	7027317888	asian	
+552	feast	2WSA	las vegas	7023672411	buffets	
+553	golden nugget hotel	1EFS	las vegas	7023857111	buffets	
+554	golden steer	3WSA	las vegas	7023844470	steak houses	
+555	lilli langtry'	1EFS	las vegas	7023857111	asian	
+556	mandarin court	1EFR	las vegas	7027371234	asian	
+557	margarita' mexican cantina	3LVBS	las vegas	7027948200	mexican	
+558	mary' diner	5WBH	las vegas	7024548073	coffee shops/diners	
+559	mikado	3LVBS	las vegas	7027917111	asian	
+560	pamplemouss	4ESA	las vegas	7027332066	continental	
+561	ralph' diner	3LVBS	las vegas	7027326330	coffee shops/diners	
+562	the bacchan	3LVBS	las vegas	7027317525	only in las vegas	
+563	venetian	3WSA	las vegas	7028764190	italian	
+564	viva mercado'	6WFR	las vegas	7028718826	mexican	
+565	yolie'	3PR	las vegas	7027940700	steak houses	
+566	2223	2MS	san francisco	4154310692	american	
+567	acquarello	1SS	san francisco	4155675432	italian	
+568	bardelli'	2OS	san francisco	4159820243	old san francisco	
+569	betelnut	2US	san francisco	4159298855	asian	
+570	bistro roti	1SS	san francisco	4154956500	french	
+571	bix	5GS	san francisco	4154336300	american	
+572	bizou	5FS	san francisco	4155432222	french	
+573	buca giovanni	8GS	san francisco	4157767766	italian	
+574	cafe adriano	3FS	san francisco	4154744180	italian	
+575	cafe marimba	2CS	san francisco	4157761506	mexican/latin american/spanish	
+576	california culinari academi	6PS	san francisco	4157713500	french	
+577	capp' corner	1PS	san francisco	4159892589	italian	
+578	carta	1MS	san francisco	4158633516	american	
+579	chevi	4AHS	san francisco	4155438060	mexican/latin american/spanish	
+580	cypress club	5JS	san francisco	4152968555	american	
+581	de alp	7B	san francisco	4157889900	french	
+582	faz	1SS	san francisco	4153620404	greek and middle eastern	
+583	fog citi diner	1BS	san francisco	4159822000	american	
+584	garden court	MANMS	san francisco	4155465011	old san francisco	
+585	gaylord'	GS	san francisco	4157718822	asian	
+586	grand cafe hotel monaco	5GS	san francisco	4152920101	american	
+587	green	BAFM	san francisco	4157716222	vegetarian	
+588	harbor villag	4EC	san francisco	4157818833	asian	
+589	harris'	2VNA	san francisco	4156731888	steak houses	
+590	harri denton'	1SS	san francisco	4158821333	american	
+591	hay street grill	3HS	san francisco	4158635545	seafood	
+592	helmand	4B	san francisco	4153620641	greek and middle eastern	
+593	hong kong flower loung	5GB	san francisco	4156688998	asian	
+594	hong kong villa	2CS	san francisco	4157528833	asian	
+595	hyde street bistro	1HS	san francisco	4154417778	italian	
+596	il fornaio levi' plaza	1BS	san francisco	4159860100	italian	
+597	izzy' steak & chop hous	3SS	san francisco	4155630487	steak houses	
+598	jack'	6SS	san francisco	4159869854	old san francisco	
+599	kabuto sushi	5GB	san francisco	4157525652	asian	
+600	katia'	65A	san francisco	4156689292		
+601	kuleto'	2PS	san francisco	4153977720	italian	
+602	kyo-ya. sheraton palac hotel	2NMSAMS	san francisco	4155465000	asian	
+603	l'osteria del forno	5CA	san francisco	4159821124	italian	
+604	le central	4BS	san francisco	4153912233	french	
+605	le soleil	1CS	san francisco	4156684848	asian	
+606	macarthur park	6FS	san francisco	4153985700	american	
+607	manora	3MS	san francisco	4158616224	asian	
+608	maykadeh	4GS	san francisco	4153628286	greek and middle eastern	
+609	mccormick & kuleto'	GS	san francisco	4159291730	seafood	
+610	millennium	2MS	san francisco	4154879800	vegetarian	
+611	moose'	1SS	san francisco	4159897800	mediterranean	
+612	north india	3WS	san francisco	4159311556	asian	
+613	on market	1MS	san francisco	4157775577	american	
+614	oritalia	1FS	san francisco	4153461333	italian	
+615	pacif pan pacif hotel	5PS	san francisco	4159292087	french	
+616	palio d'asti	6SS	san francisco	4153959800	italian	
+617	pane e vino	3SS	san francisco	4153462111	italian	
+618	pasti	1BS	san francisco	4153912555	french	
+619	perry'	1US	san francisco	4159229022	american	
+620	r&g loung	6BKS	san francisco	4159827877	or 415/982-3811 asian	
+621	rubicon	5SS	san francisco	4154344100	american	
+622	rumpus	1 tillman pl.	san francisco	415/421-2300	american	
+623	sanppo	1PS	san francisco	4153463486	asian	
+624	scala' bistro	4PS	san francisco	4153958555	italian	
+625	south park cafe	1SP	san francisco	4154957275	french	
+626	splendido embarcadero	4	san francisco	4159863222	mediterranean	
+627	star	1RA	san francisco	4158617827	american	
+628	star cafe	5VNA	san francisco	4158614344	american	
+629	stoyanof' cafe	19A	san francisco	4156643664	greek and middle eastern	
+630	strait cafe	3GB	san francisco	4156681783	asian	
+631	suppenkuch	6HS	san francisco	4152529289	russian/german	
+632	tadich grill	2CS	san francisco	4153912373	seafood	
+633	the height	3SS	san francisco	4154748890	french	
+634	thepin	2GS	san francisco	4158639335	asian	
+635	ton kiang	3GB	san francisco	4157524440	asian	
+636	vertigo	6MS	san francisco	4154337250	mediterranean	
+637	vivand porta via	2FS	san francisco	4153464430	italian	
+638	vivand ristorant	6GGA	san francisco	4156739245	italian	
+639	world wrapp	2CS	san francisco	4155639727	american	
+640	wu kong	101 spear st.	san francisco	415/957-9300	asian	
+641	yank sing	4BS	san francisco	4155414949	asian	
+642	yaya cuisin	19A	san francisco	4155666966	greek and middle eastern	
+643	yoyo tsumami bistro	1PS	san francisco	4159227788	french	
+644	zarzuela	2HS	san francisco	4153460800	mexican/latin american/spanish	
+645	zuni cafe & grill	1MS	san francisco	4155522522	mediterranean	
+646	appl pan  the	1WPB	west la	3104753585	american	
+647	asahi ramen	2SB	west la	3104792231	noodle shops	
+648	baja fresh	3KD	westlake village	8054984049	mexican	
+649	belveder  the	9LSMB	beverly hills	3107882306	pacific new wave	
+650	benita' frite	1TSP	santa monica	3104582889	fast food	
+651	bernard'	5SOS	los angeles	2136121580	continental	
+652	bistro 45	4SMA	pasadena	8187952478	californian	
+653	brent' deli	1PA	northridge	8188865679	delis	
+654	brighton coffe shop	9BW	beverly hills	3102767732	coffee shops	
+655	bristol farm market cafe	1RAS	pasadena	3106435229	californian	
+656	bruno'	3CA	mar vista	3103975703	italian	
+657	cafe '50	8LB	venice	3103991955	american	
+658	cafe blanc	9LSMB	beverly hills	3108880108	pacific new wave	
+659	cassell'	3WSS	la	2134808668	hamburgers	
+660	chez melang	1P	redondo beach	3105401222	eclectic	
+661	diaghilev	1NSVB	w. hollywood	3108541111	russian	
+662	don antonio'	1WB	westwood	3102091422	italian	
+663	duke'	8SB	w. hollywood	3106523100	coffee shops	
+664	falafel king	1BA	westwood	3102084444	middle eastern	
+665	feast from the east	1WB	west la	3104750400	chinese	
+666	gumbo pot  the	6WTS	la	2139330358	cajun/creole	
+667	hollywood hill coffe shop	6FA	hollywood	2134677678	coffee shops	
+668	indo cafe	11NB	la	3108151290	indonesian	
+669	jan' famili restaur	8BB	la	2136512866	coffee shops	
+670	jiraff	5SMB	santa monica	3109176671	californian	
+671	jodi maroni' sausag kingdom	2OFW	venice	3103061995	hot dogs	
+672	joe'	1AKB	venice	3103995811	american (new)	
+673	john o'groat	1WPB	west la	3102040692	coffee shops	
+674	johnnie' pastrami	4SSB	culver city	3103976654	delis	
+675	johnni reb' southern smokehous	4LBB	long beach	3104237327	southern/soul	
+676	johnni rocket (la)	7MA	la	2136513361	american	
+677	killer shrimp	4CA	studio city	8185081570	seafood	
+678	kokomo cafe	6WTS	la	2139330773	american	
+679	koo koo roo	8WBB	la	2136559045	chicken	
+680	la cachett	1LSMB	century city	3104704992	french (new)	
+681	la salsa (la)	2P	malibu	3104566299	mexican	
+682	la serenata de garibaldi	1EF	st. boyle hts.	2132652887	mexican/tex-mex	
+683	langer'	7SAS	la	2134838050	delis	
+684	local nochol	3TOB	westlake village	8187067706	health food	
+685	main cours  the	1WPB	rancho park	3104757564	american	
+686	mani' bakeri & espresso bar	5SFA	la	2139388800	desserts	
+687	martha'	2SG22	st. hermosa beach	3103767786	american	
+688	maxwell' cafe	1WB	marina del rey	3103067829	american	
+689	michael' (lo angeles)	1TS	santa monica	3104510843	californian	
+690	mishima	8WTS	la	2137820181	noodle shops	
+691	mo better meatti meat	7MA	la	2139355280	hamburgers	
+692	mulberri st.	1VB	encino	8189068881	pizza	
+693	ocean park cafe	3OPB	santa monica	3104525728	american	
+694	ocean star	1NAB	monterey park	8183082128	seafood	
+695	origin pantri bakeri	8SFSD	la	2136276879	diners	
+696	parkwai grill	5SAP	pasadena	8187951001	californian	
+697	pho hoa	6B	chinatown	2136265530	vietnamese	
+698	pink' famou chili dog	7NLBA	la	2139314223	hot dogs	
+699	poquito ma	2WOA	burbank	8185632252	mexican	
+700	r-23	9ETS	los angeles	2136877178	japanese	
+701	rae'	2PB	santa monica	3108287937	diners	
+702	rubin' red hot	1VB	encino	8189056515	hot dogs	
+703	ruby' (la)	4SFOA	pasadena	8187967829	diners	
+704	russell' burger	1P	seal beach	3105969556	hamburgers	
+705	ruth' chri steak hous (lo angeles)	2SBD	beverly hills	3108598744	steakhouses	
+706	shiro	1MSS	pasadena	8187994774	pacific new wave	
+707	sushi nozawa	1VB	studio city	8185087017	japanese	
+708	sweet ladi jane	8MA	la	2136537145	desserts	
+709	taiko	1SVB	brentwood	3102077782	noodle shops	
+710	tommy'	2BB	la	2133899060	hamburgers	
+711	uncl bill' pancak hous	1HA	manhattan beach	3105455177	diners	
+712	water grill	5SGA	los angeles	2138910900	seafood	
+713	zankou chicken	1ECS	glendale	8182441937	middle eastern	
+714	afghan kebab hous	7NA	new york city	2123071612	afghan	
+715	arcadia	2E6S	new york city	2122232900	american (new)	
+716	benny' burrito	9AA	new york city	2122542054	mexican	
+717	cafe con lech	4AA	new york city	2125957000	cuban	
+718	corner bistro	3WFS	new york city	2122429502	hamburgers	
+719	cucina della fontana	3BS	new york city	2122420636	italian	
+720	cucina di pesc	8EFS	new york city	2122606800	seafood	
+721	darbar	4W5S	new york city	2124327227	indian	
+722	ej' luncheonett	4SA	new york city	2124735555	diners	
+723	edison cafe	2W4S	new york city	2128405000	diners	
+724	elia corner	23S	queens	7189321510	greek	
+725	good enough to eat	4AA	new york city	2124960163	american	
+726	gray' papaya	2B	new york city	2127990243	hot dogs	
+727	il mulino	8WTS	new york city	2126733783	italian	
+728	jackson diner	37S	queens	7186721232	indian	
+729	joe' shanghai	9PS	queens	7185393838	chinese	
+730	john' pizzeria	4W6S	new york city	2127217001	pizza	
+731	kellei & ping	1GS	new york city	2122281212	pan-asian	
+732	kiev	1SA	new york city	2126744040	ukrainian	
+733	kuruma zushi	2nd fl.	new york city	212-317-2802	japanese	
+734	la caridad	2B	new york city	2128742780	cuban	
+735	la grenouil	3E5S	new york city	2127521495	french (classic)	
+736	lemongrass grill	6SA	brooklyn	7183997100	thai	
+737	lombardi'	3SS	new york city	2129417994	pizza	
+738	marnie' noodl shop	4HS	new york city	2127413214	asian	
+739	menchanko-tei	3W5S	new york city	2122471585	japanese	
+740	mitali east-west	2BS	new york city	2129891367	indian	
+741	monsoon (ny)	4AA	new york city	2125808686	thai	
+742	moustach	4AA	brooklyn	7188525555	middle eastern	
+743	nobu	1HS	new york city	2122190500	japanese	
+744	on if by land  tib	1BS	new york city	2122280822	continental	
+745	oyster bar	LL	new york city	2124906650	seafood	
+746	palm	8SA	new york city	2126872953	steakhouses	
+747	palm too	8SA	new york city	2126975198	steakhouses	
+748	patsy' pizza	1OFS	brooklyn	7188584300	pizza	
+749	peter luger steak hous	1B	brooklyn	7183877400	steakhouses	
+750	rose of india	3ESS	new york city	2125335011	indian	
+751	sam' noodl shop	4TA	new york city	2122132288	chinese	
+752	sarabeth'	1MA	new york city	2124107335	american	
+753	spark steak hous	2E4S	new york city	2126874855	steakhouses	
+754	stick to your rib	55A	queens	7189373030	bbq	
+755	sushisai	3E5S	new york city	2127551780	japanese	
+756	sylvia'	3LA	new york city	2129960660	southern/soul	
+757	szechuan hunan cottag	1YA	new york city	2125355223	chinese	
+758	szechuan kitchen	1FA	new york city	2122494615	chinese	
+759	teresa'	8MS	queens	7185202910	polish	
+760	thai hous cafe	1HS	new york city	2123341085	thai	
+761	thailand restaur	1BS	new york city	2123493132	thai	
+762	veselka	1SA	new york city	2122289682	ukrainian	
+763	westsid cottag	6NA	new york city	2122450800	chinese	
+764	window on the world	1F	new york city	2125247000	eclectic	
+765	wollensky' grill	2E4S	new york city	2127530444	steakhouses	
+766	yama	1E1S	new york city	2124750969	japanese	
+767	zarela	9SA	new york city	2126446740	mexican	
+768	andre' french restaur	4S6S	las vegas	7023855016	french (classic)	
+769	buccan bai club	3LVBS	las vegas	7028947350	continental	
+770	buzio' in the rio	3WFR	las vegas	7022527697	seafood	
+771	emeril' new orlean fish hous	3LVBS	las vegas	7028917374	seafood	
+772	fior rotisseri & grill	3WFR	las vegas	7022527702	italian	
+773	hugo' cellar	2EFS	las vegas	7023854011	continental	
+774	madam ching'	3LVBS	las vegas	7028947111	asian	
+775	mayflow cuisini	4WSA	las vegas	7028708432	chinese	
+776	michael' (la vegas)	3LVBS	las vegas	7027377111	continental	
+777	mont carlo	3LVBS	las vegas	7027334524	french (new)	
+778	moongat	3LVBS	las vegas	7027917352	chinese	
+779	morton' of chicago (la vegas)	3LVBS	las vegas	7028930703	steakhouses	
+780	nicki blair'	3PR	las vegas	7027929900	italian	
+781	piero' restaur	3CCD	las vegas	7023692305	italian	
+782	spago (la vegas)	3LVBS	las vegas	7023696300	californian	
+783	steakhous  the	1EFS	las vegas	7023821600	steakhouses	
+784	stefano'	1FS	las vegas	7023857111	italian	
+785	sterl brunch	3LVBS	las vegas	7027394651	eclectic	
+786	tre visi	3LVBS	las vegas	7028917331	italian	
+787	103 west	1WPFR	atlanta	4042335993	continental	
+788	alon' at the terrac	6PS	atlanta	4047240444	sandwiches	
+789	baker' cajun cafe	1EA	atlanta	4042235039	cajun/creole	
+790	barbecu kitchen	1VA	atlanta	4047669906	bbq	
+791	bistro  the	5EADN	atlanta	4042315733	french bistro	
+792	bobbi & june' kountri kitchen	31S	atlanta	4048763872	southern/soul	
+793	bradshaw' restaur	2SPC	atlanta	4042617015	southern/soul	
+794	brookhaven cafe	4PR	atlanta	4042315907	vegetarian	
+795	cafe sunflow	5RR	atlanta	4042561675	health food	
+796	cano	4PFR	atlanta	7704322663	american (new)	
+797	carey'	1CPS	marietta	7704228042	hamburgers	
+798	carey' corner	1PFR	marietta	7709330909	hamburgers	
+799	chop	7WPFR	atlanta	4042622675	steakhouses	
+800	chopstix	4RR	atlanta	4042554868	chinese	
+801	deacon burton' soulfood restaur	1EAS	atlanta	4045231929	southern/soul	
+802	eat	6PDLA	atlanta	4048889149	italian	
+803	fly biscuit  the	1MA	atlanta	4046878888	eclectic	
+804	frijolero	1PSN	atlanta	4048928226	tex-mex	
+805	greenwood'	1GS	roswell	7709925383	southern/soul	
+806	harold' barbecu	1MB	atlanta	4046279268	bbq	
+807	havana sandwich shop	2BH	atlanta	4046364094	cuban	
+808	hous of chan	2CP	smyrna	7709559444	chinese	
+809	indian delight	3SB	duluth	1008138212	indian	
+810	java jive	7PDLA	atlanta	4048766161	coffee shops	
+811	johnni rocket (at)	2CP	atlanta	7709556068	american	
+812	kalo' coffe hous	1CR	decatur	4043253733	coffeehouses	
+813	la fonda latina	4RR	atlanta	4043038201	spanish	
+814	lettuc soupris you (at)	3MB	duluth	7704189969	cafeterias	
+815	majest	1PDLA	atlanta	4048750276	diners	
+816	morton' of chicago (atlanta)	3PSN	atlanta	4045774366	steakhouses	
+817	my thai	1CR	atlanta	4046364280	thai	
+818	nava	3PR	atlanta	4042401984	southwestern	
+819	nuevo laredo cantina	1CAN	atlanta	4043529009	mexican	
+820	origin pancak hous (at)	4PR	atlanta	4042374116	american	
+821	palm  the (atlanta)	3PRN	atlanta	4048141955	steakhouses	
+822	rainbow restaur	2NDR	decatur	4046333538	vegetarian	
+823	ritz-carlton cafe (atlanta)	1PS	atlanta	4046590400	american (new)	
+824	riviera	5EPFR	atlanta	4042627112	mediterranean	
+825	silver skillet  the	21SN	atlanta	4048741388	coffee shops	
+826	soto	3PR	atlanta	4042332005	japanese	
+827	thelma' kitchen	7MSN	atlanta	4046885855	cafeterias	
+828	tortilla	7PDLAN	atlanta	4048920193	tex-mex	
+829	van gogh' restaur & bar	7WCR	roswell	7709931156	american (new)	
+830	veggieland	2SSC	atlanta	4042313111	vegetarian	
+831	white hous restaur	3PRN	atlanta	4042377601	diners	
+832	zab-e-le	4ONH	college park	4047682705	thai	
+833	bill' place	2CS	san francisco	4152215262	hamburgers	
+834	cafe flore	2MS	san francisco	4156218579	californian	
+835	caff greco	4CA	san francisco	4153976261	continental	
+836	campo santo	2CA	san francisco	4154339623	mexican	
+837	cha cha cha'	1HS	san francisco	4153865758	caribbean	
+838	doidge'	2US	san francisco	4159212149	american	
+839	dottie' true blue cafe	5JS	san francisco	4158852767	diners	
+840	dusit thai	3MS	san francisco	4158264639	thai	
+841	ebisu	1NA	san francisco	4155661770	japanese	
+842	emerald garden restaur	1CS	san francisco	4156731155	vietnamese	
+843	eric' chines restaur	1CS	san francisco	4152820919	chinese	
+844	hamburg mary'	1FS	san francisco	4156261985	hamburgers	
+845	kelly' on triniti	3BS	san francisco	4153624454	californian	
+846	la cumbr	5VS	san francisco	4158638205	mexican	
+847	la mediterrane	2NS	san francisco	4154317210	mediterranean	
+848	la taqueria	2MS	san francisco	4152857117	mexican	
+849	mario' bohemian cigar store cafe	2PS	san francisco	4157768226	italian	
+850	marne thai	2IS	san francisco	4156659500	thai	
+851	mel' drive-in	3GS	san francisco	4153872244	hamburgers	
+852	mo' burger	1GS	san francisco	4157883779	hamburgers	
+853	phnom penh cambodian restaur	6LS	san francisco	4157755979	cambodian	
+854	roosevelt tamal parlor	22S	san francisco	4155509213	mexican	
+855	sally' cafe & bakeri	3DHS	san francisco	4156266006	american	
+856	san francisco bbq	11S	san francisco	4154318956	thai	
+857	slant door	5VS	san francisco	4158618032	vietnamese	
+858	swan oyster depot	1PS	san francisco	4156731101	seafood	
+859	thep phanom	4WS	san francisco	4154312526	thai	
+860	ti couz	31S	san francisco	4152527373	french	
+861	trio cafe	1FS	san francisco	4155632248	american	
+862	tu lan	8SS	san francisco	4156260927	vietnamese	
+863	vicolo pizzeria	2IS	san francisco	4158632382	pizza	
+864	wa-ha-ka oaxaca mexican grill	2PS	san francisco	4157751055	mexican	

@@ -48,6 +48,7 @@ def evaluation(list_of_fds_gt, list_of_fds_dirty):
     print("-------------------------")
     print(f'The correct discovered rules: {c_matches}')
     print(f'the wrong discovered rules: {ic_matches}')
+    print(f'missing rules: {miss_matches}')
 
 
 def export_prepared_data(df_original, path, ds):

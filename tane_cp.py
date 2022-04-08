@@ -135,11 +135,14 @@ def computeCplus(x, listofcolumns, totaltuples, dictpartitions):
 
 
 def validfd(y, z, totaltuples, dictpartitions):
+    error_diff = []
     ept_tu = tuple()
     if y == ept_tu or z == ept_tu:
         return False
     ey = computeE(y, totaltuples, dictpartitions)
     eyz = computeE(y + z, totaltuples, dictpartitions)
+    error_diff.append(abs(ey - eyz))
+    #TODO: threshold diff
     if ey == eyz:
         return True
     else:

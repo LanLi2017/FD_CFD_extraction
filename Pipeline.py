@@ -121,6 +121,6 @@ def error_analysis_e1(search_space=[(0, 5), (0, 5)], func='tane', k=20):
 
 
 if __name__ == '__main__':
-    # error_analysis()
+    error_analysis()
     # run()
-    error_analysis_e1()
+    # error_analysis_e1()

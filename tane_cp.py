@@ -52,7 +52,7 @@ def findCplus(x, dictCplus):  # this computes the Cplus of x as an intersection 
     return cplus
 
 
-def compute_dependencies(level, listofcols, dictCplus, finallistofFDs, totaltuples, dictpartitions):
+def compute_dependencies(level, listofcols, dictCplus, finallistofFDs, totaltuples, dictpartitions, thres):
     '''
 
     :param dictpartitions:
@@ -80,7 +80,7 @@ def compute_dependencies(level, listofcols, dictCplus, finallistofFDs, totaltupl
                 temp = dictCplus[del_x]  # temp存入的是Cplus(X\A) -- 即X\A的右集合
             else:  # 否则，计算右方集
                 temp = computeCplus(del_x, listofcols, totaltuples,
-                                    dictpartitions)  # compute C+(X\{A}) for each A at a time
+                                    dictpartitions, thres)  # compute C+(X\{A}) for each A at a time
                 dictCplus[del_x] = temp  # 存入dictCplus中
             thesets.insert(0, set(temp))  # 通过set, 将temp转化成集合，再将该对象插入到列表的第0个位置
         res = set.intersection(*thesets)
@@ -98,7 +98,7 @@ def compute_dependencies(level, listofcols, dictCplus, finallistofFDs, totaltupl
             if tu_a in dictCplus[x]:
                 list_x.remove(a)
                 del_x = tuple(list_x)
-                if validfd(del_x, tu_a, totaltuples, dictpartitions):  # line 5 即x\{A} -> A 函数依赖成立
+                if validfd(del_x, tu_a, totaltuples, dictpartitions, thres):  # line 5 即x\{A} -> A 函数依赖成立
                     finallistofFDs.append([del_x, tu_a])  # line 6
                     dictCplus[x].remove(tu_a)  # line 7
                     listofcols = listofcols[:]  # 为了下面的剪枝作准备
@@ -114,7 +114,7 @@ def compute_dependencies(level, listofcols, dictCplus, finallistofFDs, totaltupl
     return dictCplus, finallistofFDs, dictpartitions
 
 
-def computeCplus(x, listofcolumns, totaltuples, dictpartitions):
+def computeCplus(x, listofcolumns, totaltuples, dictpartitions, thres):
     # this computes the Cplus from the first definition in section 3.2.2 of TANE paper.
     # output should be a list of single attributes
     listofcols = listofcolumns[:]
@@ -129,21 +129,25 @@ def computeCplus(x, listofcolumns, totaltuples, dictpartitions):
             tmp = del_a
             # temp = x.replace(a, '')
             # temp = temp.replace(b, '')
-            if not validfd(tmp, b, totaltuples, dictpartitions):
+            if not validfd(tmp, b, totaltuples, dictpartitions, thres):
                 cplus.append(a)
     return cplus
 
 
-def validfd(y, z, totaltuples, dictpartitions):
-    error_diff = []
+def validfd(y, z, totaltuples, dictpartitions, thres, fpath='threshold.log'):
     ept_tu = tuple()
     if y == ept_tu or z == ept_tu:
         return False
     ey = computeE(y, totaltuples, dictpartitions)
     eyz = computeE(y + z, totaltuples, dictpartitions)
-    error_diff.append(abs(ey - eyz))
-    #TODO: threshold diff
-    if ey == eyz:
+    # with open(fpath, 'a+')as file:
+    #     file.write(f'{abs(ey - eyz)} \n')
+    # TODO: threshold diff
+    # if ey == eyz:
+    #     return True
+    # else:
+    #     return False
+    if abs(ey - eyz) <= thres:
         return True
     else:
         return False
@@ -235,7 +239,7 @@ def generate_next_level(level, dictpartitions, tableT):
                     # =pi_y*pi_z（其中y为level[i]，z为level[j]）
                     dictpartitions = stripped_product(x, level[i], level[
                         j], dictpartitions,
-                                     tableT)  # compute partition of x as pi_y * pi_z (where y is level[i] and z is level[j])
+                                                      tableT)  # compute partition of x as pi_y * pi_z (where y is level[i] and z is level[j])
     return nextlevel, dictpartitions
 
 
@@ -277,7 +281,9 @@ def stripped_product(x, y, z, dictpartitions, tableT):
 '''测试list_duplicates函数的返回值:返回的是每个属性列表中每个属性的剥离分区'''
 
 
-def main(file):
+def main(file, thres):
+    # with open('threshold.log', 'a+')as f:
+    #     f.write('To adjust the threshold in TANE: \n')
     data2D = read_csv(file)
 
     totaltuples = len(data2D.index)
@@ -306,7 +312,7 @@ def main(file):
     while L[i]:  # 第i层的包含的属性集不为空
         dictCplus, finallistofFDs, dictpartitions = \
             compute_dependencies(L[i], listofcolumns[:], dictCplus, finallistofFDs, totaltuples,
-                                 dictpartitions)  # 计算该层的函数依赖
+                                 dictpartitions, thres)  # 计算该层的函数依赖
         dictCplus, finallistofFDs, L[i] = prune(L[i], dictCplus, finallistofFDs, dictpartitions)  # 剪枝，删除Li中的集合，修剪搜索空间
         nextlevel, dictpartitions = generate_next_level(L[i], dictpartitions, tableT)
         L.append(nextlevel)  # 将生成的层追加到L集合中

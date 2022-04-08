@@ -37,7 +37,7 @@ CONF = ConfigFactory.parse_file(ROOT_DIR + '/data_preparation/resources/referenc
 #     return res
 
 
-def evaluation(list_of_fds_gt, list_of_fds_dirty):
+def evaluation(list_of_fds_gt, list_of_fds_dirty, fwrite):
     accuracy, precision, recall, f1, c_matches, ic_matches, miss_matches = \
         evaluate_FDs(list_of_fds_gt, list_of_fds_dirty)
     print("-------------------------")
@@ -49,6 +49,16 @@ def evaluation(list_of_fds_gt, list_of_fds_dirty):
     print(f'The correct discovered rules: {c_matches}')
     print(f'the wrong discovered rules: {ic_matches}')
     print(f'missing rules: {miss_matches}')
+
+    fwrite.write("------------------------- \n")
+    fwrite.write("evaluating tane FDs... \n")
+    fwrite.write("accuracy: %.3f\nprecision: %.3f\nrecall: %.3f\nf1: %.3f \n" % \
+             (accuracy, precision, recall, f1))
+    fwrite.write("------------------------- \n")
+    fwrite.write(f'The correct discovered rules: {c_matches} \n')
+    fwrite.write(f'the wrong discovered rules: {ic_matches} \n')
+
+    return accuracy, precision, recall, f1
 
 
 def export_prepared_data(df_original, path, ds):
@@ -92,7 +102,20 @@ def run():
     export_prepared_data(df, prepared_path, ds)  # no need to re-run once created
 
 
+def main1():
+    # this is to generate thresholds list
+    # ori_ds = 'testdata/restaurants.csv'
+    # list_fd_old = tane(ori_ds, thres=0.0)
+    prepared_path = f'testdata/restaurants_prepared_data.csv'
+    list_fd_prep = tane(prepared_path, thres=0.0)
+
+
 def main():
+    er_tane = [0]
+    for i in range(1, 6):
+        er_tane.append(er_tane[i - 1] + 0.9 / 5)
+    print(er_tane)
+    # er_tane = list(np.linspace(0, 0.875, num=6))
     # list_of_fd_gt = CONF['rules_gt_restaurant']
     list_of_fd_gt = [[("id",), ("phone",)],
                      [("id",), ("merged_values",)],
@@ -140,25 +163,35 @@ def main():
     # pprint(list_of_cfds_prep)
 
     # FD
-    list_fd_old = tane(new_ds)
-    print(len(list_fd_old))
+    with open('log.log', 'a+') as fwrite:
+        for er in er_tane:
+            fwrite.write(f'Current threshold for TANE is : {er} \n')
+            fwrite.write(f'The number of ground truth for functional dependencies: {len(list_of_fd_gt)} \n')
+            list_fd_old = tane(new_ds, er)
+            print(len(list_fd_old))
+            fwrite.write(f'The number of functional dependencies based on original data: {len(list_fd_old)} \n')
+            list_fd_prep = tane(prepared_path, er)
+            print(len(list_fd_prep))
+            fwrite.write(f'The number of functional dependencies based on prepared data: {len(list_fd_prep)} \n')
 
-    list_fd_prep = tane(prepared_path)
-    print(len(list_fd_prep))
+            print("dirty FDs: ")
+            pprint(list_fd_old)
+            print("ground truth FDs: ")
+            pprint(list_of_fd_gt)
+            print('FDs for prepared data:')
+            pprint(list_fd_prep)
+            fwrite.write(f'The ground truth for the rules: {list_of_fd_gt} \n')
+            fwrite.write(f'Original Dataset: The discovered FDs: {list_fd_old} \n')
+            fwrite.write(f'Prepared Dataset: The discovered FDs: {list_fd_prep} \n')
 
-    print("dirty FDs: ")
-    pprint(list_fd_old)
-    print("ground truth FDs: ")
-    pprint(list_of_fd_gt)
-    print('FDs for prepared data:')
-    pprint(list_fd_prep)
-
-    print('Before preparing the data, evaluate the rules prediction:')
-    evaluation(list_of_fd_gt, list_fd_old)
-    print('After preparing the data, evaluate the rules prediction:')
-    evaluation(list_of_fd_gt, list_fd_prep)
+            fwrite.write('The evaluation results: \n')
+            fwrite.write('Before preparing the data, evaluate the rules prediction: \n')
+            evaluation(list_of_fd_gt, list_fd_old, fwrite)
+            fwrite.write('After preparing the data, evaluate the rules prediction: \n')
+            evaluation(list_of_fd_gt, list_fd_prep, fwrite)
 
 
 if __name__ == '__main__':
+    # main1()
     # run()
     main()

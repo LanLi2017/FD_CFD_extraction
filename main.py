@@ -57,6 +57,7 @@ def evaluation(list_of_fds_gt, list_of_fds_dirty, fwrite):
     fwrite.write("------------------------- \n")
     fwrite.write(f'The correct discovered rules: {c_matches} \n')
     fwrite.write(f'the wrong discovered rules: {ic_matches} \n')
+    fwrite.write(f'missing rules: {miss_matches}')
 
     return accuracy, precision, recall, f1
 

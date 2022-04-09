@@ -13,6 +13,7 @@ from tqdm import tqdm
 from ctane_cp import main as ctane
 from tane_cp import main as tane
 from utils.evaluation import evaluate_FDs
+import matplotlib.pyplot as plt
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 CONF = ConfigFactory.parse_file(ROOT_DIR + '/data_preparation/resources/reference.conf')
@@ -53,11 +54,11 @@ def evaluation(list_of_fds_gt, list_of_fds_dirty, fwrite):
     fwrite.write("------------------------- \n")
     fwrite.write("evaluating tane FDs... \n")
     fwrite.write("accuracy: %.3f\nprecision: %.3f\nrecall: %.3f\nf1: %.3f \n" % \
-             (accuracy, precision, recall, f1))
+                 (accuracy, precision, recall, f1))
     fwrite.write("------------------------- \n")
     fwrite.write(f'The correct discovered rules: {c_matches} \n')
     fwrite.write(f'the wrong discovered rules: {ic_matches} \n')
-    fwrite.write(f'missing rules: {miss_matches}')
+    fwrite.write(f'missing rules: {miss_matches}\n')
 
     return accuracy, precision, recall, f1
 
@@ -104,17 +105,46 @@ def run():
 
 
 def main1():
+    import numpy as np
+    list_of_fd_gt = [[("id",), ("phone",)],
+                     [("id",), ("merged_values",)],
+                     [("id",), ("type",)],
+                     [("id",), ("name",)],
+                     [("id",), ("city",)],
+                     [("id",), ("address",)],
+                     [("merged_values",), ("id",)],
+                     [("merged_values",), ("phone",)],
+                     [("merged_values",), ("type",)],
+                     [("merged_values",), ("name",)],
+                     [("merged_values",), ("city",)],
+                     [("merged_values",), ("address",)],
+                     [("address", "city"), ("phone",)],
+                     [("address", "city"), ("name",)],
+                     [("address", "city"), ("type",)]
+                     ]
     # this is to generate thresholds list
     # ori_ds = 'testdata/restaurants.csv'
     # list_fd_old = tane(ori_ds, thres=0.0)
-    prepared_path = f'testdata/restaurants_prepared_data.csv'
-    list_fd_prep = tane(prepared_path, thres=0.0)
+    # prepared_path = f'testdata/restaurants_prepared_data.csv'
+    # list_fd_prep = tane(prepared_path, thres=0.0)
+    er_tane = list(np.linspace(0, 0.18, num=6))
+    with open('log.log', 'a+')as fp:
+        for er in er_tane:
+            fp.write(f'Current threshold is {er} \n')
+            ori_ds = 'testdata/restaurants.csv'
+            list_fd_old = tane(ori_ds, thres=er)
+            prepared_path = f'testdata/restaurants_prepared_data.csv'
+            list_fd_prep = tane(prepared_path, thres=er)
+            fp.write('Before preparing the data, evaluate the rules prediction: \n')
+            evaluation(list_of_fd_gt, list_fd_old, fp)
+            fp.write('After preparing the data, evaluate the rules prediction: \n')
+            evaluation(list_of_fd_gt, list_fd_prep, fp)
 
 
 def main():
-    er_tane = [0]
-    for i in range(1, 6):
-        er_tane.append(er_tane[i - 1] + 0.9 / 5)
+    er_tane = [0.0]
+    for i in range(1, 11):
+        er_tane.append(er_tane[i - 1] + 0.9 / 10)
     print(er_tane)
     # er_tane = list(np.linspace(0, 0.875, num=6))
     # list_of_fd_gt = CONF['rules_gt_restaurant']
@@ -164,6 +194,14 @@ def main():
     # pprint(list_of_cfds_prep)
 
     # FD
+    old_acc_list = []
+    old_prec_list = []
+    old_recall_list = []
+    old_f1_list = []
+    new_acc_list = []
+    new_prec_list = []
+    new_recall_list = []
+    new_f1_list = []
     with open('log.log', 'a+') as fwrite:
         for er in er_tane:
             fwrite.write(f'Current threshold for TANE is : {er} \n')
@@ -187,9 +225,39 @@ def main():
 
             fwrite.write('The evaluation results: \n')
             fwrite.write('Before preparing the data, evaluate the rules prediction: \n')
-            evaluation(list_of_fd_gt, list_fd_old, fwrite)
+            old_acc, old_prec, old_recall, old_f1 = evaluation(list_of_fd_gt, list_fd_old, fwrite)
+            old_acc_list.append(old_acc)
+            old_prec_list.append(old_prec)
+            old_recall_list.append(old_recall)
+            old_f1_list.append(old_f1)
             fwrite.write('After preparing the data, evaluate the rules prediction: \n')
-            evaluation(list_of_fd_gt, list_fd_prep, fwrite)
+            new_acc, new_prec, new_recall, new_f1 = evaluation(list_of_fd_gt, list_fd_prep, fwrite)
+            new_acc_list.append(new_acc)
+            new_prec_list.append(new_prec)
+            new_recall_list.append(new_recall)
+            new_f1_list.append(new_f1)
+    plt.figure()
+    plt.subplot(221)
+    plt.plot(er_tane, old_acc_list, 'r', er_tane, new_acc_list, 'g')
+    plt.xlabel('threshold for TANE')
+    plt.ylabel('accuracy')
+
+    plt.subplot(222)
+    plt.plot(er_tane, old_recall_list, 'r', er_tane, new_recall_list, 'g')
+    plt.xlabel('threshold for TANE')
+    plt.ylabel('recall')
+
+    plt.subplot(223)
+    plt.plot(er_tane, old_prec_list, 'r', er_tane, new_prec_list, 'g')
+    plt.xlabel('threshold for TANE')
+    plt.ylabel('precision')
+
+    plt.subplot(224)
+    plt.plot(er_tane, old_f1_list, 'r', er_tane, new_f1_list, 'g')
+    plt.xlabel('threshold for TANE')
+    plt.ylabel('f1')
+    # plt.show()
+    plt.savefig('result.png')
 
 
 if __name__ == '__main__':

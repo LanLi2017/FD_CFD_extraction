@@ -143,8 +143,8 @@ def main1():
 
 def main():
     er_tane = [0.0]
-    for i in range(1, 11):
-        er_tane.append(er_tane[i - 1] + 0.9 / 10)
+    for i in range(1, 21):
+        er_tane.append(er_tane[i - 1] + 0.9 / 20)
     print(er_tane)
     # er_tane = list(np.linspace(0, 0.875, num=6))
     # list_of_fd_gt = CONF['rules_gt_restaurant']

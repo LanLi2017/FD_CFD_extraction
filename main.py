@@ -10,7 +10,6 @@ from pyhocon import ConfigFactory
 import pandas as pd
 from tqdm import tqdm
 
-from ctane_cp import main as ctane
 from tane_cp import main as tane
 from utils.evaluation import evaluate_FDs
 import matplotlib.pyplot as plt

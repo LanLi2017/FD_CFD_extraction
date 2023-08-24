@@ -8,7 +8,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from Database.db_conn import process
-from ctane_cp import main as ctane
 from tane_cp import main as tane
 
 from utils.evaluation import evaluate_FDs
@@ -37,33 +36,28 @@ def run(xml_path='BART-master/Bart_Engine/misc/resources/employees/employees-dbm
                 dirty_db_path=f'{dirty_data_path}_[{left_er, right_er}].csv')
 
 
-def error_analysis(func='tane',
-                   clean_data_path='Database/exp_data/e1/employee_50_egtask_clean_[(0, 0)].csv',
+def error_analysis(clean_data_path='Database/exp_data/e1/employee_50_egtask_clean_[(0, 0)].csv',
                    dirty_data_path='Database/exp_data/e1/employee_50_egtask_dirty_[(0, 0)].csv',
                    k=20):
-    if func == 'tane':
-        list_of_fds_dirty = tane(dirty_data_path)  # TANE with messy testdata
-        list_of_fds_gt = tane(clean_data_path)  # TANE with clean testdata
-        print("dirty FDs: ")
-        pprint(list_of_fds_dirty)
-        print("ground truth FDs: ")
-        pprint(list_of_fds_gt)
+    list_of_fds_dirty = tane(dirty_data_path)  # TANE with messy testdata
+    list_of_fds_gt = tane(clean_data_path)  # TANE with clean testdata
+    print("dirty FDs: ")
+    pprint(list_of_fds_dirty)
+    print("ground truth FDs: ")
+    pprint(list_of_fds_gt)
 
-        accuracy, precison, recall, f1, c_matches, ic_matches, miss_matches = \
-            evaluate_FDs(list_of_fds_gt, list_of_fds_dirty)
-        print("-------------------------")
-        print("evaluating tane FDs...")
-        print("-------------------------")
-        print("accuracy: %.3f\nprecison: %.3f\nrecall: %.3f\nf1: %.3f" % \
-              (accuracy, precison, recall, f1))
-        print("-------------------------")
-        print(f'The correct discovered rules: {c_matches}')
-        print(f'the wrong discovered rules: {ic_matches}')
-        print(f'The correct rules that are not able to be discovered: {miss_matches}')
-    elif func == 'ctane':
-        list_of_cfds_dirty = ctane(dirty_data_path, k)  # TANE with messy testdata
-        list_of_cfds_gt = ctane(clean_data_path, k)  # TANE with clean testdata
-    pass
+    accuracy, precison, recall, f1, c_matches, ic_matches, miss_matches = \
+        evaluate_FDs(list_of_fds_gt, list_of_fds_dirty)
+    print("-------------------------")
+    print("evaluating tane FDs...")
+    print("-------------------------")
+    print("accuracy: %.3f\nprecison: %.3f\nrecall: %.3f\nf1: %.3f" % \
+            (accuracy, precison, recall, f1))
+    print("-------------------------")
+    print(f'The correct discovered rules: {c_matches}')
+    print(f'the wrong discovered rules: {ic_matches}')
+    print(f'The correct rules that are not able to be discovered: {miss_matches}')
+
 
 def error_analysis_e1(search_space=[(0, 5), (0, 5)], func='tane', k=20):
     x_list, y_list = [], []
@@ -91,12 +85,6 @@ def error_analysis_e1(search_space=[(0, 5), (0, 5)], func='tane', k=20):
                 f1_list.append(f1)
                 x_list.append(x)
                 y_list.append(y)
-
-                
-            elif func == 'ctane':
-                list_of_cfds_dirty = ctane(dirty_data_path, k)  # TANE with messy testdata
-                list_of_cfds_gt = ctane(clean_data_path, k)  # TANE with clean testdata
-            pass
     
     X, Y, ACC, F1 = \
         np.array(x_list), np.array(y_list), np.array(accuracy_list), np.array(f1_list)
